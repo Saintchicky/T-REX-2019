@@ -29,11 +29,11 @@
         "symfony/yaml": "4.4.*"
     },
     "require-dev": {
+        "heroku/heroku-buildpack-php": "^166.0",
         "symfony/debug-pack": "*",
-        "symfony/maker-bundle": "^1.0",
+        "symfony/maker-bundle": "^1.14",
         "symfony/profiler-pack": "*",
-        "symfony/test-pack": "*",
-        "heroku/heroku-buildpack-php": "^166.0"
+        "symfony/test-pack": "*"
     },
     "config": {
         "preferred-install": {

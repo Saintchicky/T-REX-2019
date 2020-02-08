@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <div class="ui text container">
+        <h1 class="ui header">L'opérateur vaisseau : <=></h1>
+        <div class="ui hidden divider"></div>
+        <p>
+            L'opérateur de vaisseau spatial est utilisé pour comparer deux expressions. Par exemple, $ a <=> $ b renvoie -1, 0 ou 1 lorsque $ a est respectivement 
+            inférieur, égal ou supérieur à $ b. Les comparaisons sont effectuées conformément aux règles de comparaison de types de PHP. 
+        </p>
+        <div class="ui hidden divider"></div>
+        <p>Exemples :</p>
+
+        <div class="ui form">
+            {{ form_start(form, {'attr': {'class': 'row'}}) }}
+               
+
+                <div class="input-field col s12 m6 l6">
+                    {{ form_widget(form.a) }}
+                    {{ form_label(form.a, 'Choisissez un ou plusieurs catégories') }}
+                </div>
+                <div class="input-field col s12 m6 l6">
+                    {{ form_widget(form.b) }}
+                    {{ form_label(form.b, 'Choisissez un ou plusieurs catégories') }}
+                </div>
+
+                
+
+         
+                <div class="input-field col s12 m12 l12">
+                    <input type="submit" name="" value="Enregistrer" class="btn btn-primary">
+                </div>
+            {{ form_end(form) }}
+            {# <div class="field">
+                <label>$a</label>
+                <select>
+                {% for i in 1..10 %}
+                    <option value="{{i}}">{{i}}</option>
+                {% endfor %}
+                </select>
+            </div>
+            <div class="field">
+                <label>$b</label>
+                <select>
+                {% for i in 1..10 %}
+                    <option value="{{i}}">{{i}}</option>
+                {% endfor %}
+                </select>
+            </div> #}
+        </div>
+        <div class="ui hidden divider"></div>
+        <p>Résultat : </p>
+        
+
+
+    </div>
+{% endblock %}

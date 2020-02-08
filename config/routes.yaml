@@ -1,3 +1,6 @@
 index:
     path: /
     controller: App\Controller\HomeController::index
+vaisseau:
+    path: /vaisseau
+    controller: App\Controller\HomeController::vaisseau

@@ -11,13 +11,25 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class VaisseauType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        // Après la génération bien définir le type de champ en utilsant les class composant ex:IntegerType
+    {   
+        $choix = [];
+        for($i = 1; $i <= 10; $i++){
+            $choix[$i] = $i;
+        }
+        // Après la génération, bien définir le type de champ en utilsant les class composant ex:IntegerType, ChoiceType
         $builder
             ->add('a', ChoiceType::class,
-            ['a'=>['1'=>'1','2'=>'2']])
+            [
+                'placeholder' => 'Chosir un nombre',
+                'choices' => $choix,
+                'required' => true
+            ])
             ->add('b', ChoiceType::class,
-            ['b'=>['1'=>'1','2'=>'2']]);
+            [
+                'placeholder' => 'Chosir un nombre',
+                'choices' => $choix,
+                'required' => true
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

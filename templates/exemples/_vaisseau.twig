@@ -1,59 +1,55 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Le vaisseau!{% endblock %}
 
 {% block body %}
     <div class="ui text container">
         <h1 class="ui header">L'opérateur vaisseau : <=></h1>
         <div class="ui hidden divider"></div>
         <p>
-            L'opérateur de vaisseau spatial est utilisé pour comparer deux expressions. Par exemple, $ a <=> $ b renvoie -1, 0 ou 1 lorsque $ a est respectivement 
-            inférieur, égal ou supérieur à $ b. Les comparaisons sont effectuées conformément aux règles de comparaison de types de PHP. 
+            L'opérateur Vaisseau spatial est utilisé pour comparer deux expressions. 
         </p>
+        <div class="ui bulleted list">
+            <div class="item">Il retourne 0 si les deux valeurs sont égales.</div>
+            <div class="item">Il retourne 1 si la valeur à gauche et plus grande que celle de droite</div>
+            <div class="item">Il retourne 61 si la valeur à droite et plus grande que celle de gauche</div>
+        </div>
         <div class="ui hidden divider"></div>
+        {# read and display just one flash message type #}
+        {% for message in app.flashes('notice') %}
+            <div class="ui positive message">
+                <div class="header">
+                   Super !!!
+                </div>
+                <p>{{message}}</p>
+            </div>
+             <div class="ui hidden divider"></div>
+        {% endfor %}
         <p>Exemples :</p>
-
         <div class="ui form">
-            {{ form_start(form, {'attr': {'class': 'row'}}) }}
-               
-
-                <div class="input-field col s12 m6 l6">
-                    {{ form_widget(form.a) }}
-                    {{ form_label(form.a, 'Choisissez un ou plusieurs catégories') }}
+            {{ form_start(form, {'action': path('vaisseau_form'), 'method': 'POST'}) }}
+                <div class="inline fields">
+                    <div class="field">
+                        {{ form_label(form.a, 'Choisir un nombre') }}
+                        {{ form_widget(form.a) }}
+                    </div>
+                    <div class="field">
+                        {{ form_label(form.b, 'Choisir un nombre') }}
+                        {{ form_widget(form.b) }}   
+                    </div>
                 </div>
-                <div class="input-field col s12 m6 l6">
-                    {{ form_widget(form.b) }}
-                    {{ form_label(form.b, 'Choisissez un ou plusieurs catégories') }}
-                </div>
-
-                
-
-         
-                <div class="input-field col s12 m12 l12">
-                    <input type="submit" name="" value="Enregistrer" class="btn btn-primary">
+                <div class="field">
+                    <input type="submit" name="" value="Valider" class="ui button primary">
                 </div>
             {{ form_end(form) }}
-            {# <div class="field">
-                <label>$a</label>
-                <select>
-                {% for i in 1..10 %}
-                    <option value="{{i}}">{{i}}</option>
-                {% endfor %}
-                </select>
-            </div>
-            <div class="field">
-                <label>$b</label>
-                <select>
-                {% for i in 1..10 %}
-                    <option value="{{i}}">{{i}}</option>
-                {% endfor %}
-                </select>
-            </div> #}
         </div>
         <div class="ui hidden divider"></div>
         <p>Résultat : </p>
-        
-
-
+        <div class="ui hidden divider"></div>
+        {% for vaisseau in vaisseaux %}
+            {% set result = vaisseau.a <=> vaisseau.b %}
+            <p >{{vaisseau.a}} <=> {{vaisseau.b}} = {{result}}<p>
+            <div class="ui divider"></div>
+        {% endfor %}
     </div>
 {% endblock %}

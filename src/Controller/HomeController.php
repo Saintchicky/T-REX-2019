@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Vaisseau;
+use App\Entity\Referencement;
 use App\Form\VaisseauType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -53,5 +54,22 @@ class HomeController extends AbstractController
 
             return $this->redirectToRoute('vaisseau_index');
         }
+    }
+    public function referencement_index()
+    {
+        $referencements = $this->getDoctrine()->getRepository(Referencement::class)->findAll();
+        
+        foreach($referencements as $ref){
+           $ville = $ref->getVille();
+        }   
+        $choix = &$ville;
+        $var1 = var_dump($choix);
+
+        $ville = "Tokyo";
+        return $this->render('exemples/_referencement.twig', [
+            'controller_name' => 'HomeController',
+            "ville"=>$ville,
+            'choix'=>$choix
+        ]);
     }
 }

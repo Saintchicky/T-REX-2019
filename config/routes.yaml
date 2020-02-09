@@ -7,3 +7,6 @@ vaisseau_index:
 vaisseau_form:
     path: /vaisseau_form
     controller: App\Controller\HomeController::vaisseau_form
+referencement_index:
+    path: /referencement_index
+    controller: App\Controller\HomeController::referencement_index

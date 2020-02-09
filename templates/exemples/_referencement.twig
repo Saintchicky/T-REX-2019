@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Le Référencement!{% endblock %}
+
+{% block body %}
+    <div class="ui text container">
+        <h1 class="ui header">Le Référencement : &</h1>
+        <div class="ui hidden divider"></div>
+        <p>
+           On peut faire pointer une variable sur une autre : $choix = &$ville;
+        </p>
+        <div class="ui hidden divider"></div>
+        <p>Exemples :</p>
+        <div class="ui hidden divider"></div>
+            
+            <p>Ville => {{ville}}<p>
+            <p>Choix => {{choix}}<p>
+            <div class="ui divider"></div>
+   
+    </div>
+{% endblock %}

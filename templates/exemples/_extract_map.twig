@@ -7,14 +7,29 @@
         <h1 class="ui header">Extract et array_map</h1>
         <div class="ui hidden divider"></div>
         <p>
-           Le console bin est une ligne de commande qui référence l'ensemble des lignes de commandes de Symfony
+           <b>Extract :</b>  Crée des valeurs en corréspondance clés - valeurs
         </p>
         <p>Quelques exemples :</p>
+        <p>$tab =  ['adh'=>'Léopold Maltret','d_code'=>'d896654543','nb_enfants'=>'3'];</p>
+        <p>extract($tab);</p>
          <div class="ui bulleted list">
-            <div class="item"><b>php bin/console make:entity</b> - Permet de créer des entités (équivalent de modèle ds eloquent), tout en précisant le type de champ (string, int, date)
-            pour ensuite permettre la création si l'on souhaite de l'objet ds une bdd et par la suite de l'appeler dans divers traitements</div>
-            <div class="item"><b>php bin/console make:form</b>  - Permet de créer un objet form basé sur l'entité de notre choix</div>
-            <div class="item"><b>php bin/console debug:router</b> - Permet de voir l'ensemble des routes de l'application (avec méthodes et noms)</div>
+            <div class="item">adh : {{adh}}</div>
+            <div class="item">d_code : {{d_code}}</div>
+            <div class="item">nb_enfants : {{nb_enfants}}</div>
         </div>
+        <div class="ui hidden divider"></div>
+        <p>
+           <b>Array_map :</b>  Permet d'appliquer une fonction aux éléments d'un tableau
+        </p>
+        <p>
+            $a = [1, 2, 3, 4, 5];
+            <br>$b = array_map(function($n)
+            <br>{
+               <br> return ($n * $n * $n);
+            <br>}, $a);
+        </p>
+        <p>Quelques exemples :</p>
+        {{dump(b)}}
+
     </div>
 {% endblock %}

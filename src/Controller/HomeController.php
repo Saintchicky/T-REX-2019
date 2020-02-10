@@ -82,7 +82,22 @@ class HomeController extends AbstractController
     }
     public function extract_map_index()
     {
+        // Extract 
+        $tab =  ['adh'=>'Léopold Maltret','d_code'=>'d896654543','nb_enfants'=>'3'];
+        extract($tab);
+
+        // Array_map
+        $a = [1, 2, 3, 4, 5];
+        $b = array_map(function($n)
+        {
+            return ($n * $n * $n);
+        }, $a); 
+
         return $this->render('exemples/_extract_map.twig', [
+            'adh'=>$adh,
+            'd_code'=>$d_code,
+            'nb_enfants'=>$nb_enfants,
+            'b'=>$b,
             'controller_name' => 'HomeController'
         ]);
     }

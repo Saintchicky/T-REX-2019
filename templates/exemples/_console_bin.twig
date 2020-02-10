@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Le console bin!{% endblock %}
+
+{% block body %}
+    <div class="ui text container">
+        <h1 class="ui header">Le console bin : php console/bin</h1>
+        <div class="ui hidden divider"></div>
+        <p>
+           Le console bin est une ligne de commande qui référence l'ensemble des lignes de commandes de Symfony
+        </p>
+        <p>Quelques exemples :</p>
+         <div class="ui bulleted list">
+            <div class="item"><b>php bin/console make:entity</b> - Permet de créer des entités (équivalent de modèle ds eloquent), tout en précisant le type de champ (string, int, date)
+            pour ensuite permettre la création si l'on souhaite de l'objet ds une bdd et par la suite de l'appeler dans divers traitements</div>
+            <div class="item"><b>php bin/console make:form</b>  - Permet de créer un objet form basé sur l'entité de notre choix</div>
+            <div class="item"><b>php bin/console debug:router</b> - Permet de voir l'ensemble des routes de l'application (avec méthodes et noms)</div>
+        </div>
+    </div>
+{% endblock %}

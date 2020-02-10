@@ -63,13 +63,27 @@ class HomeController extends AbstractController
            $ville = $ref->getVille();
         }   
         $choix = &$ville;
-        $var1 = var_dump($choix);
+
 
         $ville = "Tokyo";
+
+        $choix = "Mexico";
         return $this->render('exemples/_referencement.twig', [
             'controller_name' => 'HomeController',
             "ville"=>$ville,
             'choix'=>$choix
+        ]);
+    }
+    public function console_bin_index()
+    {
+        return $this->render('exemples/_console_bin.twig', [
+            'controller_name' => 'HomeController'
+        ]);
+    }
+    public function extract_map_index()
+    {
+        return $this->render('exemples/_extract_map.twig', [
+            'controller_name' => 'HomeController'
         ]);
     }
 }

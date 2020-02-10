@@ -10,3 +10,9 @@ vaisseau_form:
 referencement_index:
     path: /referencement_index
     controller: App\Controller\HomeController::referencement_index
+console_bin_index:
+    path: /console_bin_index
+    controller: App\Controller\HomeController::console_bin_index
+extract_map_index:
+    path: /extract_map_index
+    controller: App\Controller\HomeController::extract_map_index

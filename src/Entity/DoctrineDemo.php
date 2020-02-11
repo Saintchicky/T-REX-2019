@@ -41,6 +41,16 @@ class DoctrineDemo
      */
     private $updated_at;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $civilite;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $date_naissance;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,6 +112,30 @@ class DoctrineDemo
     public function setUpdatedAt(?\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getCivilite(): ?string
+    {
+        return $this->civilite;
+    }
+
+    public function setCivilite(?string $civilite): self
+    {
+        $this->civilite = $civilite;
+
+        return $this;
+    }
+
+    public function getDateNaissance(): ?\DateTimeInterface
+    {
+        return $this->date_naissance;
+    }
+
+    public function setDateNaissance(?\DateTimeInterface $date_naissance): self
+    {
+        $this->date_naissance = $date_naissance;
 
         return $this;
     }

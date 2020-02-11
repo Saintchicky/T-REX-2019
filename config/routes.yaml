@@ -19,3 +19,9 @@ extract_map_index:
 doctrine_index:
     path: /doctrine_index
     controller: App\Controller\DoctrineController::doctrine_index
+doctrine_show:
+    path: /doctrine_show
+    controller: App\Controller\DoctrineController::doctrine_show
+doctrine_add:
+    path: /doctrine_add
+    controller: App\Controller\DoctrineController::doctrine_add

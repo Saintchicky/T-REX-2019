@@ -16,3 +16,6 @@ console_bin_index:
 extract_map_index:
     path: /extract_map_index
     controller: App\Controller\HomeController::extract_map_index
+doctrine_index:
+    path: /doctrine_index
+    controller: App\Controller\DoctrineController::doctrine_index

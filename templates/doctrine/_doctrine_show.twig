@@ -23,9 +23,13 @@
         <p>Quelques exemples :</p>
     {{ form_start(form, {'action': path('vaisseau_form'), 'method': 'POST','attr': {'class': 'ui form'}}) }}
         <h4 class="ui dividing header">Formulaire</h4>
-        <div class="two fields">
+        <div class="three fields">
            <div class="field">
-               {{ form_label(form.prenom) }}
+               {{ form_label(form.civilite) }}
+               {{ form_widget(form.civilite) }}
+           </div>
+            <div class="field">
+               {{ form_label(form.prenom,'Prénom') }}
                {{ form_widget(form.prenom) }}
            </div>
            <div class="field">
@@ -34,12 +38,41 @@
            </div>
         </div>
         <div class="field">
+            {{ form_label(form.date_naissance,'Votre date de Naissance') }}
+            <div class="ui calendar" id="french_calendar">
+                <div class="ui input left icon">
+                    <i class="calendar icon"></i>
+                    {{ form_widget(form.date_naissance) }} 
+              </div>
+            </div>
+        </div>
+        <div class="field">
             {{ form_label(form.message) }}
             {{ form_widget(form.message) }} 
         </div>
+        
+       
         <div class="field">
             <input type="submit" name="" value="Valider" class="ui button primary">
         </div>
     {{ form_end(form) }}
 </div>
+    {% block javascript %}
+    <script>
+
+    $('#french_calendar')
+            .calendar({
+                text: {
+                days: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+                months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+                monthsShort: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec'],
+                today: 'Aujourd\'hui',
+                now: 'Maintenant',
+                am: 'AM',
+                pm: 'PM'
+                }
+            });
+    </script>
+    {% endblock %}
 {% endblock %}
+

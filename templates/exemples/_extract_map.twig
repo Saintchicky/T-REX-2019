@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Extract et arry_map!{% endblock %}
+
+{% block body %}
+    <div class="ui text container">
+        <h1 class="ui header">Extract et array_map</h1>
+        <div class="ui hidden divider"></div>
+        <p>
+           <b>Extract :</b>  Crée des valeurs en corréspondance clés - valeurs
+        </p>
+        <p>Quelques exemples :</p>
+        <p>$tab =  ['adh'=>'Léopold Maltret','d_code'=>'d896654543','nb_enfants'=>'3'];</p>
+        <p>extract($tab);</p>
+         <div class="ui bulleted list">
+            <div class="item">adh : {{adh}}</div>
+            <div class="item">d_code : {{d_code}}</div>
+            <div class="item">nb_enfants : {{nb_enfants}}</div>
+        </div>
+        <div class="ui hidden divider"></div>
+        <p>
+           <b>Array_map :</b>  Permet d'appliquer une fonction aux éléments d'un tableau
+        </p>
+        <p>
+            $a = [1, 2, 3, 4, 5];
+            <br>$b = array_map(function($n)
+            <br>{
+               <br> return ($n * $n * $n);
+            <br>}, $a);
+        </p>
+        <p>Quelques exemples :</p>
+        {{dump(b)}}
+
+    </div>
+{% endblock %}

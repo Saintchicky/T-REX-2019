@@ -59,8 +59,8 @@
                 }
             </style>
         {% endblock %}
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-        <script src=" {{ asset('semantic/dist/semantic.min.js')}}"></script>
+        <script src="{{ asset('js/jquery-3.4.1.min.js')}}"></script>
+        <script src="{{ asset('semantic/dist/semantic.min.js')}}"></script>
     </head>
     <body>
         {# Intitulé de l'appli #}
@@ -73,8 +73,8 @@
         <div class="ui borderless main menu fixed" style="position: fixed; top: 0px; left: auto; z-index: 10;">
             <div class="ui text container">
             <div class="header item">
-                <img class="logo" src="https://fomantic-ui.com/examples/assets/images/logo.png">
-                Project Name
+                <img class="logo" src="{{ asset('img/logo.png')}}">
+                T-Rex
             </div>
             <a href="#" class="item">Blog</a>
             <a href="#" class="item">Articles</a>
@@ -202,5 +202,5 @@
                     });
             </script>
         {% endblock %}
-    </body>
+    </body>²
 </html>

@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Vaisseau;
+use App\Entity\Referencement;
 use App\Form\VaisseauType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class HomeController extends AbstractController
 {
@@ -18,15 +21,84 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
-    public function vaisseau()
+    public function vaisseau_index()
+    {
+        $vaisseaux = $this->getDoctrine()->getRepository(Vaisseau::class)->findAll();
+        $vaisseau = new Vaisseau();
+        $form = $this->createForm(VaisseauType::class, $vaisseau);
+        return $this->render('exemples/_vaisseau.twig', [
+            'controller_name' => 'HomeController',
+            'form' => $form->createView(),
+            'vaisseaux'=>$vaisseaux
+        ]);
+
+    }
+    public function vaisseau_form(Request $request)
     {
         $vaisseau = new Vaisseau();
         // Création du form
         $form = $this->createForm(VaisseauType::class, $vaisseau);
 
-    	return $this->render('exemples/_vaisseau.twig', [
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager(); // On récupère l'entity manager
+            $em->persist($vaisseau); // On confie notre entité à l'entity manager (on persist l'entité)
+            $em->flush(); // On execute la requete
+
+                
+            $this->addFlash(
+                'notice',
+                'C\'est sauvegardé'
+            );
+       
+
+            return $this->redirectToRoute('vaisseau_index');
+        }
+    }
+    public function referencement_index()
+    {
+        $referencements = $this->getDoctrine()->getRepository(Referencement::class)->findAll();
+        
+        foreach($referencements as $ref){
+           $ville = $ref->getVille();
+        }   
+        $choix = &$ville;
+
+
+        $ville = "Tokyo";
+
+        $choix = "Mexico";
+        return $this->render('exemples/_referencement.twig', [
             'controller_name' => 'HomeController',
-            'form' => $form->createView()
+            "ville"=>$ville,
+            'choix'=>$choix
+        ]);
+    }
+    public function console_bin_index()
+    {
+        return $this->render('exemples/_console_bin.twig', [
+            'controller_name' => 'HomeController'
+        ]);
+    }
+    public function extract_map_index()
+    {
+        // Extract 
+        $tab =  ['adh'=>'Léopold Maltret','d_code'=>'d896654543','nb_enfants'=>'3'];
+        extract($tab);
+
+        // Array_map
+        $a = [1, 2, 3, 4, 5];
+        $b = array_map(function($n)
+        {
+            return ($n * $n * $n);
+        }, $a); 
+
+        return $this->render('exemples/_extract_map.twig', [
+            'adh'=>$adh,
+            'd_code'=>$d_code,
+            'nb_enfants'=>$nb_enfants,
+            'b'=>$b,
+            'controller_name' => 'HomeController'
         ]);
     }
 }

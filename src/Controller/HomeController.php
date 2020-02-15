@@ -21,20 +21,9 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
-    public function vaisseau_index()
-    {
-        $vaisseaux = $this->getDoctrine()->getRepository(Vaisseau::class)->findAll();
-        $vaisseau = new Vaisseau();
-        $form = $this->createForm(VaisseauType::class, $vaisseau);
-        return $this->render('exemples/_vaisseau.twig', [
-            'controller_name' => 'HomeController',
-            'form' => $form->createView(),
-            'vaisseaux'=>$vaisseaux
-        ]);
-
-    }
     public function vaisseau_form(Request $request)
     {
+        $vaisseaux = $this->getDoctrine()->getRepository(Vaisseau::class)->findAll();
         $vaisseau = new Vaisseau();
         // Création du form
         $form = $this->createForm(VaisseauType::class, $vaisseau);
@@ -52,8 +41,14 @@ class HomeController extends AbstractController
             );
        
 
-            return $this->redirectToRoute('vaisseau_index');
+            return $this->redirectToRoute('vaisseau_form');
         }
+        return $this->render('exemples/_vaisseau.twig', [
+            'controller_name' => 'HomeController',
+            'form' => $form->createView(),
+            'vaisseaux'=>$vaisseaux
+        ]);
+
     }
     public function referencement_index()
     {

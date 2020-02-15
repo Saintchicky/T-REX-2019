@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\DoctrineDemo;
-use App\Form\DoctrineDemoType;
+use App\Entity\FormulaireDemo;
+use App\Form\FormulaireDemoType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,30 +22,19 @@ class DoctrineController extends AbstractController
             'controller_name' => 'DoctrineController',
         ]);
     }
-    public function doctrine_show()
+    public function doctrine_add(Request $request)
     {
-        $doctrine_demos = $this->getDoctrine()->getRepository(DoctrineDemo::class)->findAll();
-        $doctrine_demo = new DoctrineDemo();
-        $form = $this->createForm(DoctrineDemoType::class, $doctrine_demo,[
+        $formulaire_demos = $this->getDoctrine()->getRepository(FormulaireDemo::class)->findAll();
+        $formulaire_demo = new FormulaireDemo();
+        $form = $this->createForm(FormulaireDemoType::class, $formulaire_demo,[
             'action' => $this->generateUrl('doctrine_add'),
             'method' => 'POST',
         ]);
-        return $this->render('doctrine/_doctrine_show.twig', [
-            'form' => $form->createView(),
-            'doctrine_demos'=>$doctrine_demos,
-            'controller_name' => 'DoctrineController',
-        ]);
-    }
-    public function doctrine_add(Request $request)
-    {
-        $doctrine_demo = new DoctrineDemo();
-        // Création du form
-        $form = $this->createForm(DoctrineDemoType::class, $doctrine_demo);
-        // Pour initialiser les datetimes created at et updated at, il faut mettre un constructor dans L'entité 
+        //On retient la requête
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager(); // On récupère l'entity manager
-            $em->persist($doctrine_demo); // On confie notre entité à l'entity manager (on persist l'entité)
+            $em->persist($formulaire_demo); // On confie notre entité à l'entity manager (on persist l'entité)
             $em->flush(); // On execute la requete
 
                 
@@ -53,37 +42,40 @@ class DoctrineController extends AbstractController
                 'notice',
                 'C\'est sauvegardé'
             );
-       
-
-            return $this->redirectToRoute('doctrine_show');
+            return $this->redirectToRoute('doctrine_add');
         }
+        return $this->render('doctrine/_doctrine_show.twig', [
+            'form' => $form->createView(),
+            'formulaire_demos'=>$formulaire_demos,
+            'controller_name' => 'DoctrineController',
+        ]);
     }
-    public function doctrine_edit(DoctrineDemo $doctrine_demo)
+    public function doctrine_edit(FormulaireDemo $formulaire_demo)
     {
-        $form = $this->createForm(DoctrineDemoType::class, $doctrine_demo,[
+        $form = $this->createForm(FormulaireDemoType::class, $formulaire_demo,[
             'action' => $this->generateUrl('doctrine_modify',[
-                'id' => $doctrine_demo->getId(),
+                'id' => $formulaire_demo->getId(),
             ]),
             'method' => 'POST',
         ]);
         return $this->render('doctrine/_doctrine_edit.twig', [
             'form' => $form->createView(),
-            'doctrine_demo'=>$doctrine_demo,
+            'formulaire_demo'=>$formulaire_demo,
             'controller_name' => 'DoctrineController',
         ]);
     }
-    public function doctrine_modify(DoctrineDemo $doctrine_demo, Request $request)
+    public function doctrine_modify(FormulaireDemo $formulaire_demo, Request $request)
     {
        
-        $form = $this->createForm(DoctrineDemoType::class, $doctrine_demo);
+        $form = $this->createForm(FormulaireDemoType::class, $formulaire_demo);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //$doctrine_demo->setLastUpdateDate(new \DateTime());
-
-            
+            // Mettre à jour la date si modification
+            $formulaire_demo->setUpdatedAt(new \DateTime());
+            // When you make flush(), Doctrine checks all the fields of all fetched data and make a transaction to the database.
             $em = $this->getDoctrine()->getManager();
-            $em->persist($doctrine_demo);
+            $em->persist($formulaire_demo);
             $em->flush();
             $this->addFlash(
                 'notice',
@@ -91,18 +83,20 @@ class DoctrineController extends AbstractController
             );
         }
 
-    	return $this->redirectToRoute('doctrine_show');
+    	return $this->redirectToRoute('doctrine_add');
     }
     public function doctrine_remove($id)
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $doctrine_objet = $entityManager->getRepository(DoctrineDemo::class)->find($id);
+        // recherche par Id
+        $doctrine_objet = $entityManager->getRepository(FormulaireDemo::class)->find($id);
+        // Supprime l'objet appelé
         $entityManager->remove($doctrine_objet);
         $entityManager->flush();
         $this->addFlash(
             'notice',
             'La personne a été rétirée'
         );
-        return $this->redirectToRoute('doctrine_show');
+        return $this->redirectToRoute('doctrine_add');
     }
 }

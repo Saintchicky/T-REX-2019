@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\DoctrineDemo;
+use App\Entity\FormulaireDemo;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class DoctrineDemoType extends AbstractType
+class FormulaireDemoType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -25,7 +25,7 @@ class DoctrineDemoType extends AbstractType
                 'choices' => $choix,
                 'required' => false
             ])
-            ->add('date_naissance',BirthdayType ::class,[
+            ->add('dateNaissance',BirthdayType ::class,[
                 'widget' => 'single_text',
                 'format' => 'dd-MM-yyyy',
                 'required' => false
@@ -36,7 +36,7 @@ class DoctrineDemoType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => DoctrineDemo::class,
+            'data_class' => FormulaireDemo::class,
         ]);
     }
 }

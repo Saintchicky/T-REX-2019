@@ -1,15 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Démo Doctrine!{% endblock %}
+{% block title %}Fomulaire Doctrine!{% endblock %}
 
 {% block body %}
     <div class="ui text container">
         <h1 class="ui header">Doctrine Modifier</h1>
-        <div class="ui hidden divider"></div>
-        <p>
-           Doctrine est un Orm (Object Relational Mapping) qui permet de manipuler des enregistrements sous
-           forme d'objets.
-        </p>
         {# read and display just one flash message type #}
         {% for message in app.flashes('notice') %}
             <div class="ui positive message">
@@ -25,41 +20,40 @@
         {# Fin Formumaire #}
     </div>
     {% block javascript %}
-    <script>
-    // Calendrier 
-    $('#french_calendar')
-        .calendar({
-            type: 'date',
-            formatter: {
-                date: function (date, settings) {
-                    if (!date) return '';
-                    var day = date.getDate();
-                    var month = date.getMonth()+1;
-                    var year = date.getFullYear();
-                    day = day.toString();
-                    month = month.toString();
-                    if(day.length == 1)
-                    {
-                        day = '0'+day;
+        <script>
+            // Calendrier 
+            $('#french_calendar')
+                .calendar({
+                    type: 'date',
+                    formatter: {
+                        date: function (date, settings) {
+                            if (!date) return '';
+                            var day = date.getDate();
+                            var month = date.getMonth()+1;
+                            var year = date.getFullYear();
+                            day = day.toString();
+                            month = month.toString();
+                            if(day.length == 1)
+                            {
+                                day = '0'+day;
+                            }
+                            if(month.length == 1)
+                            {
+                                month = '0'+month;
+                            }
+                            return day + '/' + month + '/' + year;
+                        }
+                    },
+                    text: {
+                    days: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+                    months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+                    monthsShort: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    today: 'Aujourd\'hui',
+                    now: 'Maintenant',
+                    am: 'AM',
+                    pm: 'PM'
                     }
-                    if(month.length == 1)
-                    {
-                        month = '0'+month;
-                    }
-                    return day + '/' + month + '/' + year;
-                }
-            },
-            text: {
-            days: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-            months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
-            monthsShort: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec'],
-            today: 'Aujourd\'hui',
-            now: 'Maintenant',
-            am: 'AM',
-            pm: 'PM'
-            }
-    });
-
-    </script>
+            });
+        </script>
     {% endblock %}
 {% endblock %}

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\VaisseauRepository")
@@ -17,11 +18,13 @@ class Vaisseau
     private $id;
 
     /**
+     * @Assert\NotBlank(message="Sélectionnez un nombre")
      * @ORM\Column(type="integer", nullable=true)
      */
     private $a;
 
     /**
+     * @Assert\NotBlank(message="Sélectionnez un nombre")
      * @ORM\Column(type="integer", nullable=true)
      */
     private $b;

@@ -53,15 +53,15 @@
                 </tr>
             </thead>
             <tbody>
-                {% for demo in doctrine_demos %}
+                {% for demo in formulaire_demos %}
             <tr>
                     <td>{{demo.id}}</td>
                     <td>{{demo.civilite}}</td>
                     <td>{{demo.prenom}}</td>
                     <td>{{demo.nom}}</td>
-                    <td>{{demo.DateNaissance|date('d-m-Y')}}</td>
-                    <td>{{demo.CreatedAt|date('d-m-Y')}}</td>
-                    <td>{{demo.UpdatedAt|date('d-m-Y')}}</td>
+                    <td>{{demo.dateNaissance|date('d-m-Y')}}</td>
+                    <td>{{demo.createdAt|date('d-m-Y')}}</td>
+                    <td>{{demo.updatedAt|date('d-m-Y')}}</td>
                     <td>
                         <div class="ui buttons">
                             <a class="mini ui blue button" href="{{path('doctrine_edit',{id:demo.id})}}">Modifier</a>

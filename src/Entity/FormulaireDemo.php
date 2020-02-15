@@ -6,9 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\DoctrineDemoRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\FormulaireDemoRepository")
  */
-class DoctrineDemo
+class FormulaireDemo
 {
     /**
      * @ORM\Id()
@@ -36,34 +36,33 @@ class DoctrineDemo
     private $message;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)²
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $created_at;
+    private $createdAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $updated_at;
+    private $updatedAt;
 
     /**
-     * @Assert\NotBlank
+     * @Assert\NotBlank(message="Choississez votre civilité")
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $civilite;
 
     /**
-     * @Assert\NotBlank(message="Choississez votre civilité")
      * @ORM\Column(type="date", nullable=true)
      */
-    private $date_naissance;
+    private $dateNaissance;
 
-    public function  __construct()
-    {
-        $this->setUpdatedAt(new \DateTime('now'));    
-        if ($this->getCreatedAt() === null) {
-            $this->setCreatedAt(new \DateTime('now'));
-        }
-    }
+    // public function  __construct()
+    // {
+    //     $this->setUpdatedAt(new \DateTime('now'));    
+    //     if ($this->getCreatedAt() === null) {
+    //         $this->setCreatedAt(new \DateTime('now'));
+    //     }
+    // }
 
     public function getId(): ?int
     {
@@ -108,24 +107,24 @@ class DoctrineDemo
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->created_at;
+        return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTimeInterface $created_at): self
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
     {
-        $this->created_at =  $created_at;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
     public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->updated_at;
+        return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updated_at): self
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
-        $this->updated_at = $updated_at;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
@@ -144,12 +143,12 @@ class DoctrineDemo
 
     public function getDateNaissance(): ?\DateTimeInterface
     {
-        return $this->date_naissance;
+        return $this->dateNaissance;
     }
 
-    public function setDateNaissance(?\DateTimeInterface $date_naissance): self
+    public function setDateNaissance(?\DateTimeInterface $dateNaissance): self
     {
-        $this->date_naissance = $date_naissance;
+        $this->dateNaissance = $dateNaissance;
 
         return $this;
     }

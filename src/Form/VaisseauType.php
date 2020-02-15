@@ -22,13 +22,13 @@ class VaisseauType extends AbstractType
             [
                 'placeholder' => 'Chosir un nombre',
                 'choices' => $choix,
-                'required' => true
+                'required' => false
             ])
             ->add('b', ChoiceType::class,
             [
                 'placeholder' => 'Chosir un nombre',
                 'choices' => $choix,
-                'required' => true
+                'required' => false
             ]);
     }
 

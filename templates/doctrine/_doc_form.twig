@@ -1,0 +1,33 @@
+{{ form_start(form, {'attr': {'class': 'ui form'}}) }}
+        <h4 class="ui dividing header">{{title}}</h4>
+        <div class="three fields">
+           <div class="field">
+               {{ form_label(form.civilite) }}
+               {{ form_widget(form.civilite) }}
+           </div>
+            <div class="field">
+               {{ form_label(form.prenom,'Prénom') }}
+               {{ form_widget(form.prenom) }}
+           </div>
+           <div class="field">
+               {{ form_label(form.nom) }}
+               {{ form_widget(form.nom) }}
+           </div>
+        </div>
+        <div class="field">
+            {{ form_label(form.date_naissance,'Votre date de Naissance') }}
+            <div class="ui calendar" id="french_calendar">
+                <div class="ui input left icon">
+                    <i class="calendar icon"></i>
+                    {{ form_widget(form.date_naissance) }} 
+              </div>
+            </div>
+        </div>
+        <div class="field">
+            {{ form_label(form.message) }}
+            {{ form_widget(form.message) }} 
+        </div>
+        <div class="field">
+            <input type="submit" name="" value="Valider" class="ui button primary">
+        </div>
+{{ form_end(form) }}

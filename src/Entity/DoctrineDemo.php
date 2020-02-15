@@ -51,6 +51,14 @@ class DoctrineDemo
      */
     private $date_naissance;
 
+    public function  __construct()
+    {
+        $this->setUpdatedAt(new \DateTime('now'));    
+        if ($this->getCreatedAt() === null) {
+            $this->setCreatedAt(new \DateTime('now'));
+        }
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -99,7 +107,7 @@ class DoctrineDemo
 
     public function setCreatedAt(?\DateTimeInterface $created_at): self
     {
-        $this->created_at = $created_at;
+        $this->created_at =  $created_at;
 
         return $this;
     }

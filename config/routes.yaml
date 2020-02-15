@@ -25,3 +25,12 @@ doctrine_show:
 doctrine_add:
     path: /doctrine_add
     controller: App\Controller\DoctrineController::doctrine_add
+doctrine_edit:
+    path: /doctrine_edit/{id}
+    controller: App\Controller\DoctrineController::doctrine_edit
+doctrine_modify:
+    path: /doctrine_modify/{id}
+    controller: App\Controller\DoctrineController::doctrine_modify
+doctrine_remove:
+    path: /doctrine_remove/{id}
+    controller: App\Controller\DoctrineController::doctrine_remove

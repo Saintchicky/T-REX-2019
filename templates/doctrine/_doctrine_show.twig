@@ -20,58 +20,97 @@
             </div>
              <div class="ui hidden divider"></div>
         {% endfor %}
-        <p>Quelques exemples :</p>
-    {{ form_start(form, {'action': path('vaisseau_form'), 'method': 'POST','attr': {'class': 'ui form'}}) }}
-        <h4 class="ui dividing header">Formulaire</h4>
-        <div class="three fields">
-           <div class="field">
-               {{ form_label(form.civilite) }}
-               {{ form_widget(form.civilite) }}
-           </div>
-            <div class="field">
-               {{ form_label(form.prenom,'Prénom') }}
-               {{ form_widget(form.prenom) }}
-           </div>
-           <div class="field">
-               {{ form_label(form.nom) }}
-               {{ form_widget(form.nom) }}
-           </div>
-        </div>
-        <div class="field">
-            {{ form_label(form.date_naissance,'Votre date de Naissance') }}
-            <div class="ui calendar" id="french_calendar">
-                <div class="ui input left icon">
-                    <i class="calendar icon"></i>
-                    {{ form_widget(form.date_naissance) }} 
-              </div>
+        {# Formulaire #}
+        <div class="ui styled accordion" style="width:100%;">
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Formulaire à tester
+            </div>
+            <div class="content">
+                {% include 'doctrine/_doc_form.twig' with {'title':'Formulaire'} %}
             </div>
         </div>
-        <div class="field">
-            {{ form_label(form.message) }}
-            {{ form_widget(form.message) }} 
+    </div> 
+    <div class="ui container">
+        {# Fin Formumaire #}
+        <div class="ui horizontal divider">
+            Traitement des données
         </div>
-        
-       
-        <div class="field">
-            <input type="submit" name="" value="Valider" class="ui button primary">
-        </div>
-    {{ form_end(form) }}
-</div>
+        <table class="ui celled striped table">
+            <thead>
+                <tr>
+                    <th colspan="8">Liste des personnes</th>
+                </tr>
+                <tr>
+                    <th>N°</th>
+                    <th>Civilité</th>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Date de naissance</th>
+                    <th>Crée le</th>
+                    <th>Modifié le</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for demo in doctrine_demos %}
+            <tr>
+                    <td>{{demo.id}}</td>
+                    <td>{{demo.civilite}}</td>
+                    <td>{{demo.prenom}}</td>
+                    <td>{{demo.nom}}</td>
+                    <td>{{demo.DateNaissance|date('d-m-Y')}}</td>
+                    <td>{{demo.CreatedAt|date('d-m-Y')}}</td>
+                    <td>{{demo.UpdatedAt|date('d-m-Y')}}</td>
+                    <td>
+                        <div class="ui buttons">
+                            <a class="mini ui blue button" href="{{path('doctrine_edit',{id:demo.id})}}">Modifier</a>
+                            <div class="or" data-text="ou"></div>
+                            <a class="mini ui red button" href="{{path('doctrine_remove',{id:demo.id})}}">Supprimer</a>
+                        </div>
+                    </td>
+            <tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+ 
     {% block javascript %}
     <script>
-
+    // Calendrier 
     $('#french_calendar')
-            .calendar({
-                text: {
-                days: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-                months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
-                monthsShort: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec'],
-                today: 'Aujourd\'hui',
-                now: 'Maintenant',
-                am: 'AM',
-                pm: 'PM'
+        .calendar({
+            type: 'date',
+            formatter: {
+                date: function (date, settings) {
+                    if (!date) return '';
+                    var day = date.getDate();
+                    var month = date.getMonth()+1;
+                    var year = date.getFullYear();
+                    day = day.toString();
+                    month = month.toString();
+                    if(day.length == 1)
+                    {
+                        day = '0'+day;
+                    }
+                    if(month.length == 1)
+                    {
+                        month = '0'+month;
+                    }
+                    return day + '/' + month + '/' + year;
                 }
-            });
+            },
+            text: {
+            days: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+            months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+            monthsShort: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec'],
+            today: 'Aujourd\'hui',
+            now: 'Maintenant',
+            am: 'AM',
+            pm: 'PM'
+            }
+    });
+    $('.ui.accordion').accordion();
     </script>
     {% endblock %}
 {% endblock %}

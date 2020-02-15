@@ -25,3 +25,6 @@ doctrine_show:
 doctrine_add:
     path: /doctrine_add
     controller: App\Controller\DoctrineController::doctrine_add
+methods:
+    path: /methods
+    controller: App\Controller\MethodsController::methods

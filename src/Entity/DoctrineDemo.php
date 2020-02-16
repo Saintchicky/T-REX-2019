@@ -38,12 +38,12 @@ class DoctrineDemo
     /**
      * @ORM\Column(type="datetime", nullable=true)²
      */
-    private $created_at;
+    private $createdAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $updated_at;
+    private $updatedAt;
 
     /**
      * @Assert\NotBlank
@@ -55,7 +55,12 @@ class DoctrineDemo
      * @Assert\NotBlank(message="Choississez votre civilité")
      * @ORM\Column(type="date", nullable=true)
      */
-    private $date_naissance;
+    private $dateNaissance;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $email;
 
     public function  __construct()
     {
@@ -150,6 +155,18 @@ class DoctrineDemo
     public function setDateNaissance(?\DateTimeInterface $date_naissance): self
     {
         $this->date_naissance = $date_naissance;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }

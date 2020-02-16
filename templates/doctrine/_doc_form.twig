@@ -1,37 +1,47 @@
 {{ form_start(form, {'attr': {'class': 'ui form'}}) }}
         <h4 class="ui dividing header">{{title}}</h4>
-        <span class="error">{{ form_errors(form.prenom) }}</span>
+     {# Astuce : Pour retirer les ul li générés automatiquement on utilise striptags pour les retirer {{ form_errors(form.prenom)|striptags('') }} #}
         <div class="three fields">
-           <div class="field">
+           <div class="required field {{ (form_errors(form.civilite)) ? 'error'}}">
                {{ form_label(form.civilite) }}
                {{ form_widget(form.civilite) }}
-               	<span class="field error">{{ form_errors(form.civilite) }}</span>
+               {% if form_errors(form.civilite) %}
+                    <div class="ui pointing red basic label">{{ form_errors(form.civilite)|striptags('') }}</div>
+               {% endif %}
            </div>
-            <div class="field">
+            <div class="required field {{ (form_errors(form.prenom)) ? 'error'}}">
                {{ form_label(form.prenom,'Prénom') }}
                {{ form_widget(form.prenom) }}
-               	<span class="field error">{{ form_errors(form.prenom) }}</span>
+                {% if form_errors(form.prenom) %}
+                    <div class="ui pointing red basic label">{{ form_errors(form.prenom)|striptags('') }}</div>
+                {% endif %}             	
            </div>
-           <div class="field">
+           <div class="required field {{ (form_errors(form.nom)) ? 'error'}}">
                {{ form_label(form.nom) }}
                {{ form_widget(form.nom) }}
-               	<span class="field error">{{ form_errors(form.nom) }}</span>
+                {% if form_errors(form.nom) %}
+                    <div class="ui pointing red basic label">{{ form_errors(form.nom)|striptags('') }}</div>
+                {% endif %}     
            </div>
         </div>
-        <div class="field">
+        <div class="required field {{ (form_errors(form.dateNaissance)) ? 'error'}}">
             {{ form_label(form.dateNaissance,'Votre date de Naissance') }}
             <div class="ui calendar" id="french_calendar">
                 <div class="ui input left icon">
                     <i class="calendar icon"></i>
                     {{ form_widget(form.dateNaissance) }}
-                    <span class="field error">{{ form_errors(form.dateNaissance) }}</span> 
-              </div>
+                </div>
+                {% if form_errors(form.dateNaissance) %}
+                    <div class="ui pointing red basic label">{{ form_errors(form.dateNaissance)|striptags('') }}</div>
+                {% endif %}
             </div>
         </div>
-        <div class="field">
+        <div class="required field {{ (form_errors(form.message)) ? 'error'}}">
             {{ form_label(form.message) }}
-            {{ form_widget(form.message) }} 
-            <span class="field error">{{ form_errors(form.message) }}</span>
+            {{ form_widget(form.message) }}
+            {% if form_errors(form.message) %}
+                <div class="ui pointing red basic label">{{ form_errors(form.message)|striptags('') }}</div>
+            {% endif %}
         </div>
         <div class="field">
             <input type="submit" value="Valider" class="ui button primary">

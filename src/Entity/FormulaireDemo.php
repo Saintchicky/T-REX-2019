@@ -52,6 +52,9 @@ class FormulaireDemo
     private $civilite;
 
     /**
+     * @Assert\NotBlank(message="Date vide")
+     * @Assert\Date
+     * @var string A "d/m/Y" formatted value
      * @ORM\Column(type="date", nullable=true)
      */
     private $dateNaissance;

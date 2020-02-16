@@ -17,6 +17,7 @@ class FormulaireDemoType extends AbstractType
     {
         $choix = ['Madame'=>'Madame','Monsieur'=>'Monsieur'];
         $builder
+        // on met required à false pour pouvoir personnaliser le message du validator
             ->add('nom',TextType::class,['required' => false])
             ->add('prenom',TextType::class,['required' => false])
             ->add('message',TextareaType::class,['required' => false])
@@ -27,8 +28,10 @@ class FormulaireDemoType extends AbstractType
             ])
             ->add('dateNaissance',BirthdayType ::class,[
                 'widget' => 'single_text',
-                'format' => 'dd-MM-yyyy',
-                'required' => false
+                'format' => 'dd/MM/yyyy',
+                'required' => false,
+                // deuxièeme contrainte si la date n'est pas valide
+                'invalid_message' => 'Date Invalide'
             ])
         ;
     }

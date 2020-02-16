@@ -7,8 +7,7 @@
         <h1 class="ui header">Doctrine Show + supprimer</h1>
         <div class="ui hidden divider"></div>
         <p>
-           Doctrine est un Orm (Object Relational Mapping) qui permet de manipuler des enregistrements sous
-           forme d'objets.
+           On peut tester l'objet form et doctrine avec ce formulaire
         </p>
         {# read and display just one flash message type #}
         {% for message in app.flashes('notice') %}
@@ -64,9 +63,9 @@
                     <td>{{demo.updatedAt|date('d-m-Y')}}</td>
                     <td>
                         <div class="ui buttons">
-                            <a class="mini ui blue button" href="{{path('doctrine_edit',{id:demo.id})}}">Modifier</a>
+                            <a class="mini ui blue button" href="{{path('doctrine_edit',{id:demo.id})}}" style="line-height: unset;">Modifier</a>
                             <div class="or" data-text="ou"></div>
-                            <a class="mini ui red button" href="{{path('doctrine_remove',{id:demo.id})}}">Supprimer</a>
+                            <a class="mini ui red button" href="{{path('doctrine_remove',{id:demo.id})}}"  style="line-height: unset;">Supprimer</a>
                         </div>
                     </td>
             <tr>
@@ -111,6 +110,12 @@
             }
     });
     $('.ui.accordion').accordion();
+    $('form>.required.field').each(function(index,element){
+        if($(this).hasClass('error')){
+          $('.ui.styled.accordion>.title').addClass('active');
+          $('.ui.styled.accordion>.content').addClass('active');
+        }
+    })
     </script>
     {% endblock %}
 {% endblock %}

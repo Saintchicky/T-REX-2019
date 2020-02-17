@@ -28,3 +28,6 @@ doctrine_modify:
 doctrine_remove:
     path: /doctrine_remove/{id}
     controller: App\Controller\DoctrineController::doctrine_remove
+methods:
+    path: /methods
+    controller: App\Controller\MethodsController::methods

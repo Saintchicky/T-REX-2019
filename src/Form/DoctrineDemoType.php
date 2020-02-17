@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class DoctrineDemoType extends AbstractType
@@ -19,15 +19,12 @@ class DoctrineDemoType extends AbstractType
         $builder
             ->add('nom',TextType::class,['required' => false])
             ->add('prenom',TextType::class,['required' => false])
-            ->add('message',TextareaType::class,['required' => false])
             ->add('civilite',ChoiceType::class,[
                 'placeholder' => 'Votre Civilité',
                 'choices' => $choix,
                 'required' => false
             ])
-            ->add('date_naissance',BirthdayType ::class,[
-                'widget' => 'single_text',
-                'format' => 'dd-MM-yyyy',
+            ->add('email',EmailType ::class,[
                 'required' => false
             ])
         ;

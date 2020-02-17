@@ -1,0 +1,34 @@
+{{ form_start(form_couple, {'attr': {'class': 'ui form'}}) }}
+        <h4 class="ui dividing header">{{title}}</h4>
+     {# Astuce : Pour retirer les ul li générés automatiquement on utilise striptags pour les retirer {{ form_errors(form.prenom)|striptags('') }} #}
+        <div class="three fields">
+           <div class="required field {{ (form_errors(form_couple.civilite)) ? 'error'}}">
+               {{ form_label(form_couple.civilite) }}
+               {{ form_widget(form_couple.civilite) }}
+               {% if form_errors(form_couple.civilite) %}
+                    <div class="ui pointing red basic label">{{ form_errors(form_couple.civilite)|striptags('') }}</div>
+               {% endif %}
+           </div>
+            <div class="required field {{ (form_errors(form_couple.prenom)) ? 'error'}}">
+               {{ form_label(form_couple.prenom,'Prénom') }}
+               {{ form_widget(form_couple.prenom) }}
+                {% if form_errors(form_couple.prenom) %}
+                    <div class="ui pointing red basic label">{{ form_errors(form_couple.prenom)|striptags('') }}</div>
+                {% endif %}             	
+           </div>
+           <div class="required field {{ (form_errors(form_couple.nom)) ? 'error'}}">
+               {{ form_label(form_couple.nom) }}
+               {{ form_widget(form_couple.nom) }}
+                {% if form_errors(form_couple.nom) %}
+                    <div class="ui pointing red basic label">{{ form_errors(form_couple.nom)|striptags('') }}</div>
+                {% endif %}     
+           </div>
+        </div>
+        <div class="required field {{ (form_errors(form_couple.email)) ? 'error'}}">
+                {{ form_label(form_couple.email) }}    
+                {{ form_widget(form_couple.email) }}
+                {% if form_errors(form_couple.email) %}
+                    <div class="ui pointing red basic label">{{ form_errors(form_couple.email)|striptags('') }}</div>
+                {% endif %}
+        </div>
+{{ form_end(form_couple) }}

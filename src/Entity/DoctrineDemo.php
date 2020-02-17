@@ -30,7 +30,6 @@ class DoctrineDemo
     private $prenom;
 
     /**
-     * @Assert\NotBlank(message="Veuillez laisser un messsage")
      * @ORM\Column(type="text", nullable=true)
      */
     private $message;
@@ -46,18 +45,19 @@ class DoctrineDemo
     private $updatedAt;
 
     /**
-     * @Assert\NotBlank
+     * @Assert\NotBlank(message="Choississez votre civilité")
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $civilite;
 
     /**
-     * @Assert\NotBlank(message="Choississez votre civilité")
      * @ORM\Column(type="date", nullable=true)
      */
     private $dateNaissance;
 
     /**
+     * @Assert\NotBlank(message="Veuillez renseigner votre email")
+     * @Assert\Email
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $email;
@@ -113,24 +113,24 @@ class DoctrineDemo
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->created_at;
+        return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTimeInterface $created_at): self
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
     {
-        $this->created_at =  $created_at;
+        $this->createdAt =  $createdAt;
 
         return $this;
     }
 
     public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->updated_at;
+        return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updated_at): self
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
-        $this->updated_at = $updated_at;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

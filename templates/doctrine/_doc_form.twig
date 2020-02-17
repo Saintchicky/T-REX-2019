@@ -1,4 +1,4 @@
-{{ form_start(form, {'attr': {'class': 'ui form'}}) }}
+{{ form_start(form, {'attr': {'class': 'ui form','id':'formMain'}}) }}
         <h4 class="ui dividing header">{{title}}</h4>
      {# Astuce : Pour retirer les ul li générés automatiquement on utilise striptags pour les retirer {{ form_errors(form.prenom)|striptags('') }} #}
         <div class="three fields">
@@ -43,7 +43,17 @@
                 <div class="ui pointing red basic label">{{ form_errors(form.message)|striptags('') }}</div>
             {% endif %}
         </div>
+        <div class="ui segment">
+            <div class="ui toggle checkbox">
+                {{ form_widget(form.couple) }}
+                {# <input type="checkbox" name="couple" val=""> #}
+                <label>Formulaire Couple</label>
+            </div>
+        </div>
+        <div class="ui blue message" id="seg-couple" style="display:none;">
+            {% include 'doctrine/_doc_couple_form.twig' with {'title':'Formulaire Couple'} %}
+        </div>
         <div class="field">
-            <input type="submit" value="Valider" class="ui button primary">
+            <input type="submit" value="Valider" class="ui button primary" form="formMain">
         </div>
 {{ form_end(form) }}

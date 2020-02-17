@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\FormulaireDemo;
+use App\Entity\DoctrineDemo;
 use App\Form\FormulaireDemoType;
+use App\Form\DoctrineDemoType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,14 +32,33 @@ class DoctrineController extends AbstractController
             'action' => $this->generateUrl('doctrine_add'),
             'method' => 'POST',
         ]);
+        $doctrine_demo = new DoctrineDemo();
+        $form_couple =$this->createForm(DoctrineDemoType::class, $doctrine_demo,[
+            'action' => $this->generateUrl('doctrine_add'),
+            'method' => 'POST',
+        ]);
+        // if($form_couple->isSubmitted() && $form_couple->isValid()){
+        //     $em = $this->getDoctrine()->getManager();
+        //     $em->persist($doctrine_demo);
+        //     $em->flush();
+        // }
         //On retient la requête
-        $form->handleRequest($request);
+    
+        
+        //$form->handleRequest($request);
+        dump($form)->handleRequest($request);
+        // if($form->isSubmitted()){
+        //     if( $form->couple == 'oui'){
+        //         $form_couple->handleRequest($request);
+        //     }  
+        // }
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager(); // On récupère l'entity manager
             $em->persist($formulaire_demo); // On confie notre entité à l'entity manager (on persist l'entité)
-            $em->flush(); // On execute la requete
-
-                
+             // On confie notre entité à l'entity manager (on persist l'entité)
+             // On execute la requete
+             $em->flush();
+           
             $this->addFlash(
                 'notice',
                 'C\'est sauvegardé'
@@ -46,6 +67,7 @@ class DoctrineController extends AbstractController
         }
         return $this->render('doctrine/_doctrine_show.twig', [
             'form' => $form->createView(),
+            'form_couple' => $form_couple->createView(),
             'formulaire_demos'=>$formulaire_demos,
             'controller_name' => 'DoctrineController',
         ]);

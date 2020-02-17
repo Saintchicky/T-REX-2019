@@ -10,6 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class FormulaireDemoType extends AbstractType
 {
@@ -33,6 +35,11 @@ class FormulaireDemoType extends AbstractType
                 // deuxièeme contrainte si la date n'est pas valide
                 'invalid_message' => 'Date Invalide'
             ])
+            ->add('couple', CheckboxType::class,
+            ['mapped' => false,'required' => false]) // le camp n'existe pas ds la table
+            // ->add('save', SubmitType::class, [
+            //     'attr' => ['class' => 'ui button primary'],
+            // ])
         ;
     }
 

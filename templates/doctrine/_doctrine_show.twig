@@ -17,7 +17,7 @@
                 </div>
                 <p>{{message}}</p>
             </div>
-             <div class="ui hidden divider"></div>
+            <div class="ui hidden divider"></div>
         {% endfor %}
         {# Formulaire #}
         <div class="ui styled accordion" style="width:100%;">
@@ -110,12 +110,24 @@
             }
     });
     $('.ui.accordion').accordion();
+    $('.ui.toggle.checkbox').checkbox({
+			onChecked: function(){
+				$('#formulaire_demo_couple').val('oui');
+                $('#seg-couple').show('fast');
+			},
+			onUnchecked: function(){
+				$('#formulaire_demo_couple').val('non');
+                $('#seg-couple').hide('fast');
+			}
+		}
+    );
     $('form>.required.field').each(function(index,element){
         if($(this).hasClass('error')){
           $('.ui.styled.accordion>.title').addClass('active');
           $('.ui.styled.accordion>.content').addClass('active');
         }
     })
+
     </script>
     {% endblock %}
 {% endblock %}

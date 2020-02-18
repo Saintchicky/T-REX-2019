@@ -127,7 +127,10 @@
           $('.ui.styled.accordion>.content').addClass('active');
         }
     })
-
+    if($('.ui.toggle.checkbox').hasClass('checked')){
+        $('#formulaire_demo_couple').val('oui');
+        $('#seg-couple').show('fast');
+    }
     </script>
     {% endblock %}
 {% endblock %}

@@ -45,13 +45,10 @@ class DoctrineController extends AbstractController
         //On retient la requête
     
         
-        //$form->handleRequest($request);
-        dump($form)->handleRequest($request);
-        // if($form->isSubmitted()){
-        //     if( $form->couple == 'oui'){
-        //         $form_couple->handleRequest($request);
-        //     }  
-        // }
+        $form->handleRequest($request);
+        if($form->get('couple')->getData()){
+            $form_couple->handleRequest($request);
+        }
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager(); // On récupère l'entity manager
             $em->persist($formulaire_demo); // On confie notre entité à l'entity manager (on persist l'entité)

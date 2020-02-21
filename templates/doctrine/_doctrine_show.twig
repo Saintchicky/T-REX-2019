@@ -54,20 +54,52 @@
             <tbody>
                 {% for demo in formulaire_demos %}
             <tr>
-                    <td>{{demo.id}}</td>
-                    <td>{{demo.civilite}}</td>
-                    <td>{{demo.prenom}}</td>
-                    <td>{{demo.nom}}</td>
-                    <td>{{demo.dateNaissance|date('d-m-Y')}}</td>
-                    <td>{{demo.createdAt|date('d-m-Y')}}</td>
-                    <td>{{demo.updatedAt|date('d-m-Y')}}</td>
-                    <td>
-                        <div class="ui buttons">
-                            <a class="mini ui blue button" href="{{path('doctrine_edit',{id:demo.id})}}" style="line-height: unset;">Modifier</a>
-                            <div class="or" data-text="ou"></div>
-                            <a class="mini ui red button" href="{{path('doctrine_remove',{id:demo.id})}}"  style="line-height: unset;">Supprimer</a>
-                        </div>
-                    </td>
+                <td>{{demo.id}}</td>
+                <td>{{demo.civilite}}</td>
+                <td>{{demo.prenom}}</td>
+                <td>{{demo.nom}}</td>
+                <td>{{demo.dateNaissance|date('d-m-Y')}}</td>
+                <td>{{demo.createdAt|date('d-m-Y')}}</td>
+                <td>{{demo.updatedAt|date('d-m-Y')}}</td>
+                <td>
+                    <div class="ui buttons">
+                        <a class="mini ui blue button" href="{{path('doctrine_edit',{id:demo.id})}}" style="line-height: unset;">Modifier</a>
+                        <div class="or" data-text="ou"></div>
+                        <a class="mini ui red button" href="{{path('doctrine_remove',{id:demo.id})}}"  style="line-height: unset;">Supprimer</a>
+                    </div>
+                </td>
+            <tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="ui horizontal divider">
+           Couple données
+        </div>
+        <table class="ui celled striped table">
+            <thead>
+                <tr>
+                    <th colspan="8">Liste des personnes</th>
+                </tr>
+                <tr>
+                    <th>N°</th>
+                    <th>Civilité</th>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Crée le</th>
+                    <th>Modifié le</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for demo in doctrine_demos %}
+            <tr>
+                <td>{{demo.id}}</td>
+                <td>{{demo.civilite}}</td>
+                <td>{{demo.prenom}}</td>
+                <td>{{demo.nom}}</td>
+                <td>{{demo.email}}</td>
+                <td>{{demo.createdAt|date('d-m-Y')}}</td>
+                <td>{{demo.updatedAt|date('d-m-Y')}}</td>
             <tr>
             {% endfor %}
             </tbody>

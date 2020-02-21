@@ -1,4 +1,6 @@
 {{ form_start(form, {'attr': {'class': 'ui form','id':'formMain'}}) }}
+{# On ajoute un token car deux form #}
+{{ form_row(form._token) }}
         <h4 class="ui dividing header">{{title}}</h4>
      {# Astuce : Pour retirer les ul li générés automatiquement on utilise striptags pour les retirer {{ form_errors(form.prenom)|striptags('') }} #}
         <div class="three fields">

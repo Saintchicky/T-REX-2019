@@ -27,35 +27,30 @@ class DoctrineController extends AbstractController
     public function doctrine_add(Request $request)
     {
         $formulaire_demos = $this->getDoctrine()->getRepository(FormulaireDemo::class)->findAll();
+        $doctrine_demos = $this->getDoctrine()->getRepository(DoctrineDemo::class)->findAll();
         $formulaire_demo = new FormulaireDemo();
         $form = $this->createForm(FormulaireDemoType::class, $formulaire_demo,[
             'action' => $this->generateUrl('doctrine_add'),
             'method' => 'POST',
         ]);
         $doctrine_demo = new DoctrineDemo();
-        $form_couple =$this->createForm(DoctrineDemoType::class, $doctrine_demo,[
-            'action' => $this->generateUrl('doctrine_add'),
-            'method' => 'POST',
-        ]);
-        // if($form_couple->isSubmitted() && $form_couple->isValid()){
-        //     $em = $this->getDoctrine()->getManager();
-        //     $em->persist($doctrine_demo);
-        //     $em->flush();
-        // }
+        //On désactive le csrf du form couple pour éviter un conflit avec le 1er form
+        $form_couple =$this->createForm(DoctrineDemoType::class, $doctrine_demo,['csrf_protection' => false]);
         //On retient la requête
-    
-        
         $form->handleRequest($request);
+        // Si la checkbox est coché à oui(ou couple true) alors on active les formChecks du form couple
         if($form->get('couple')->getData()){
             $form_couple->handleRequest($request);
         }
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager(); // On récupère l'entity manager
             $em->persist($formulaire_demo); // On confie notre entité à l'entity manager (on persist l'entité)
-             // On confie notre entité à l'entity manager (on persist l'entité)
-             // On execute la requete
-             $em->flush();
-           
+            // On execute la requete
+            
+            if($form->get('couple')->getData()){
+                $em->persist($doctrine_demo); 
+            }
+            $em->flush();
             $this->addFlash(
                 'notice',
                 'C\'est sauvegardé'
@@ -66,6 +61,7 @@ class DoctrineController extends AbstractController
             'form' => $form->createView(),
             'form_couple' => $form_couple->createView(),
             'formulaire_demos'=>$formulaire_demos,
+            'doctrine_demos'=>$doctrine_demos,
             'controller_name' => 'DoctrineController',
         ]);
     }

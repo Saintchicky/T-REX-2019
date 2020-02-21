@@ -32,7 +32,7 @@ class FormulaireDemoType extends AbstractType
                 'widget' => 'single_text',
                 'format' => 'dd/MM/yyyy',
                 'required' => false,
-                // deuxièeme contrainte si la date n'est pas valide
+                // deuxième contrainte si la date n'est pas valide
                 'invalid_message' => 'Date Invalide'
             ])
             ->add('couple', CheckboxType::class,

@@ -6,6 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/annotations": "^1.8",
+        "scrivo/highlight.php": "^9.18",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony-cmf/menu-bundle": "^2.2",
         "symfony/apache-pack": "^1.0",

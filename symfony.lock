@@ -138,6 +138,9 @@
     "psr/log": {
         "version": "1.1.2"
     },
+    "scrivo/highlight.php": {
+        "version": "v9.18.1.0"
+    },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
         "recipe": {

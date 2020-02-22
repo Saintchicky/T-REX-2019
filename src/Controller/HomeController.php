@@ -10,6 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+// Include the Highlighter class pour des exemples de code ds le twig
+use Highlight\Highlighter;
 class HomeController extends AbstractController
 {
     /**
@@ -63,10 +65,40 @@ class HomeController extends AbstractController
         $ville = "Tokyo";
 
         $choix = "Mexico";
+        $ville = "Paris";
+
+
+        // Create a new instance of Highlighter
+        $highlighter = new Highlighter();
+        // Define the language that you want to use to highlight
+        $language = "php";
+
+        $code = '
+        // Appel de Doctrine pour récupérer les objets
+        $referencements = $this->getDoctrine()
+        ->getRepository(Referencement::class)->findAll();
+
+        foreach($referencements as $ref){
+            $ville = $ref->getVille();
+        } 
+
+        $choix = &$ville;
+
+        $ville = "Tokyo";
+
+        $choix = "Mexico";
+        $ville = "Paris";
+        ';
+        // Create the markup with styles ready to highlight in the view
+        // as first argument the language type and as second the code
+        $markupHighlightedCodeObject = $highlighter->highlight($language, $code);
+
+
         return $this->render('exemples/_referencement.twig', [
             'controller_name' => 'HomeController',
             "ville"=>$ville,
-            'choix'=>$choix
+            'choix'=>$choix,
+            'code'=>$markupHighlightedCodeObject
         ]);
     }
     public function console_bin_index()

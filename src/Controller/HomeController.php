@@ -10,8 +10,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-// Include the Highlighter class pour des exemples de code ds le twig
-use Highlight\Highlighter;
 class HomeController extends AbstractController
 {
     /**
@@ -69,7 +67,7 @@ class HomeController extends AbstractController
 
 
         // Create a new instance of Highlighter
-        $highlighter = new Highlighter();
+        // $highlighter = new Highlighter();
         // Define the language that you want to use to highlight
         $language = "php";
 
@@ -89,16 +87,12 @@ class HomeController extends AbstractController
         $choix = "Mexico";
         $ville = "Paris";
         ';
-        // Create the markup with styles ready to highlight in the view
-        // as first argument the language type and as second the code
-        $markupHighlightedCodeObject = $highlighter->highlight($language, $code);
-
-
+    
         return $this->render('exemples/_referencement.twig', [
             'controller_name' => 'HomeController',
             "ville"=>$ville,
             'choix'=>$choix,
-            'code'=>$markupHighlightedCodeObject
+            'code'=>$code
         ]);
     }
     public function console_bin_index()
@@ -113,17 +107,37 @@ class HomeController extends AbstractController
         $tab =  ['adh'=>'Léopold Maltret','d_code'=>'d896654543','nb_enfants'=>'3'];
         extract($tab);
 
+        $code_extract = '
+        // Extract
+        $tab =  [
+        "adh"=>"Léopold Maltret",
+        "d_code"=>"d896654543","nb_enfants"=>"3"
+        ];
+        extract($tab);
+        ';
+
         // Array_map
         $a = [1, 2, 3, 4, 5];
         $b = array_map(function($n)
         {
             return ($n * $n * $n);
-        }, $a); 
+        }, $a);
+
+        $code_array = '
+        // Array_map
+        $a = [1, 2, 3, 4, 5];
+        $b = array_map(function($n)
+        {
+            return ($n * $n * $n);
+        }, $a);
+        ';
 
         return $this->render('exemples/_extract_map.twig', [
             'adh'=>$adh,
             'd_code'=>$d_code,
             'nb_enfants'=>$nb_enfants,
+            'code_array'=>$code_array,
+            'code_extract'=>$code_extract,
             'b'=>$b,
             'controller_name' => 'HomeController'
         ]);

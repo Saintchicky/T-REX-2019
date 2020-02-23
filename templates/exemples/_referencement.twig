@@ -13,9 +13,7 @@
         <p>Exemples :</p>
         <div class="ui hidden divider"></div>
             <p>
-                <pre> {# Code lightening #}
-                    <code class="hljs {{code.language}}">{{code.value|raw}}</code>
-                </pre>
+                {{ code|highlightCode("php")|raw }}
             </p>
             <p>Ville => {{ville}}<p>
             <p>Choix => {{choix}}<p>

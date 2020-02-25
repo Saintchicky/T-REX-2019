@@ -73,8 +73,11 @@ class DoctrineController extends AbstractController
             ]),
             'method' => 'POST',
         ]);
+        $doctrine_demo = new DoctrineDemo();
+        $form_couple =$this->createForm(DoctrineDemoType::class, $doctrine_demo,['csrf_protection' => false]);
         return $this->render('doctrine/_doctrine_edit.twig', [
             'form' => $form->createView(),
+            'form_couple' => $form_couple->createView(),
             'formulaire_demo'=>$formulaire_demo,
             'controller_name' => 'DoctrineController',
         ]);

@@ -58,6 +58,10 @@
                     margin: 5em 0em 0em;
                     padding: 5em 0em;
                 }
+                .logo{
+                    padding: 1em;
+                    background:gainsboro;
+                }
             </style>
         {% endblock %}
         <script src="{{ asset('js/jquery-3.4.1.min.js')}}"></script>
@@ -66,21 +70,32 @@
     <body>
         {# Intitulé de l'appli #}
         <div class="ui main text container">
-            <h1 class="ui header">Sticky Example</h1>
-            <p>This example shows how to use lazy loaded images, a sticky menu, and a simple text container</p>
+            <h1 class="ui header">Retour Formation</h1>
+            <p>Formation d'une semaine sur PHP et Symfony</p>
         </div>
         {# Fin intitulé de l'appli #}
         {# Menu de l'appli #}
         <div class="ui borderless main menu fixed" style="position: fixed; top: 0px; left: auto; z-index: 10;">
             <div class="ui text container">
             <div class="header item">
-                <img class="logo" src="{{ asset('img/logo.png')}}">
-                T-Rex
+                <div class="logo">T-Rex</div>
             </div>
-            <a href="#" class="item">Blog</a>
-            <a href="#" class="item">Articles</a>
+            <a href="#" class="item">Symfony</a>
+            <div class="ui dropdown item">
+                    Léo <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <div class="header">Php</div>
+                        <a href="{{path('vaisseau_form')}}" class="item">Vaisseau</a>
+                        <a href="{{path('referencement_index')}}" class="item">Référencement</a>
+                        <a href="{{path('extract_map_index')}}" class="item">Extract et Array_Map</a>
+                        <div class="divider"></div>
+                        <div class="header">Symfony</div>
+                        <a href="{{path('doctrine_index')}}" class="item">Doctrine Démo</a>
+                            {# <a class="item">Link Item</a> #}
+                    </div>
+            </div>
             <a href="#" class="ui right floated dropdown item" tabindex="0">
-                Dropdown <i class="dropdown icon"></i>
+                Sam <i class="dropdown icon"></i>
                 <div class="menu" tabindex="-1">
                 <div class="item">Link Item</div>
                 <div class="item">Link Item</div>
@@ -101,12 +116,10 @@
         </div>
         <div class="ui borderless main menu constraint" style="display: block; visibility: hidden;">
             <div class="ui text container">
-            <div class="header item">
-                <img class="logo" src="https://fomantic-ui.com/examples/assets/images/logo.png">
-                Project Name
-            </div>
-            <a href="#" class="item">Blog</a>
-            
+                <div class="header item">
+                    <h1 class="ui header">Retour Formation</h1>
+                    <p>Formation d'une semaine, suivie au centre PLB</p>
+                </div>
             </div>
         </div>
          {# fin de l'appli #}
@@ -156,7 +169,7 @@
                 <a class="item" href="#">Privacy Policy</a>
                 </div>
             </div>
-         </div>
+        </div>
         {% block javascripts %}
             <script>
                 $(document)

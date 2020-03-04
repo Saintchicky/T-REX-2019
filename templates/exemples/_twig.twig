@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Twig!{% endblock %}
+
+{% block body %}
+    <div class="ui text container">
+        <h1 class="ui header">Astuces Twig</h1>
+        <div class="ui hidden divider"></div>
+        <p>
+           Quelques exemples d'utilisations Twig
+        </p>
+        <p>Verbatim : twig ne parse plus les variables</p>
+         <div class="ui bulleted list">
+            <div class="item">
+                {% verbatim %}
+                    <ul>
+                    {% for item in seq %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endverbatim %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

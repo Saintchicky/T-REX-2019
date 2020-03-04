@@ -142,4 +142,10 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController'
         ]);
     }
+    public function twig()
+    {
+        return $this->render('exemples/_twig.twig', [
+            'controller_name' => 'HomeController',
+        ]);
+    }
 }

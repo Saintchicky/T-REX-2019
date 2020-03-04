@@ -31,3 +31,6 @@ doctrine_remove:
 methods:
     path: /methods
     controller: App\Controller\MethodsController::methods
+twig:
+    path: /twig
+    controller: App\Controller\HomeController::twig

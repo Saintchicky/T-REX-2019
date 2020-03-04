@@ -29,9 +29,9 @@
                 {% include 'doctrine/_doc_form.twig' with {'title':'Formulaire'} %}
             </div>
         </div>
-    </div> 
-    <div class="ui container">
         {# Fin Formumaire #}
+    </div>
+    <div class="ui container">
         <div class="ui horizontal divider">
             Traitement des données
         </div>
@@ -101,7 +101,7 @@
                 <td>{{demo.createdAt|date('d-m-Y')}}</td>
                 <td>{{demo.updatedAt|date('d-m-Y')}}</td>
             <tr>
-            {% endfor %}
+                {% endfor %}
             </tbody>
         </table>
     </div>

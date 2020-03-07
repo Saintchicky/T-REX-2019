@@ -34,3 +34,6 @@ methods:
 twig:
     path: /twig
     controller: App\Controller\HomeController::twig
+include_macros:
+    path: /include_macros
+    controller: App\Controller\IncludemacroController::index

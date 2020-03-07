@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Include et Macros{% endblock %}
+
+{% block body %}
+    <div class="ui text container">
+        <h1 class="ui header">Démo d'include et Macros</h1>
+        <div class="ui hidden divider"></div>
+        <div class="ui medium header">Include avec Variables personnalisées</div>
+         <p>
+            {{ code_include_var|highlightCode("php")|raw }}
+        </p>
+        {# Changer la variable shipping #}
+        {% include  "/includemacro/includes/_step.twig" with {step: 'shipping'} only %}
+
+        <div class="ui divider"></div>
+        <div class="ui medium header">Include avec condition</div>
+        <p>
+            {{ code_include_cond|highlightCode("php")|raw }}
+        </p>
+
+        {% set oav = true %}
+        {# {% set oav = false %} #}
+
+        <form action="#" name="test" id="test">
+            {% include oav  ? '/includemacro/includes/_adh_form_oav.twig' : '/includemacro/includes/_adh_form.twig' %}
+            <div class="field">
+                <input type="submit" value="Valider" class="ui button primary">
+            </div>
+        </form>
+    </div>
+    {% block javascript %}
+        <script>
+            $('.ui.selection.dropdown').dropdown({});
+            // Récupère le data-target de l'élément cliqué
+            function handler(event)
+            {
+               var element = $(this).data('target');
+               var target = $('[data-target='+element+']');
+               return target;
+            }
+            $('[data-element="french_calendar"]').click( handler ).calendar({
+                type: 'date',
+                formatter: {
+                    date: function (date, settings) {
+                        if (!date) return '';
+                        var day = date.getDate();
+                        var month = date.getMonth()+1;
+                        var year = date.getFullYear();
+                        day = day.toString();
+                        month = month.toString();
+                        if(day.length == 1)
+                        {
+                            day = '0'+day;
+                        }
+                        if(month.length == 1)
+                        {
+                            month = '0'+month;
+                        }
+                        return day + '/' + month + '/' + year;
+                    }
+                },
+                text: {
+                days: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+                months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+                monthsShort: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec'],
+                today: 'Aujourd\'hui',
+                now: 'Maintenant',
+                am: 'AM',
+                pm: 'PM'
+                }
+            });;
+        </script>
+    {% endblock %}
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,173 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Démo Doctrine!{% endblock %}
+
+{% block body %}
+    <div class="ui text container">
+        <div class="ui segment">
+            <h1 class="ui header">Doctrine CRUD</h1>
+            <div class="ui hidden divider"></div>
+            <p>
+            On peut tester l'objet form et doctrine avec ce formulaire
+            </p>
+            {# read and display just one flash message type #}
+            {% for message in app.flashes('notice') %}
+                <div class="ui positive message">
+                    <div class="header">
+                    Super !!!
+                    </div>
+                    <p>{{message}}</p>
+                </div>
+                <div class="ui hidden divider"></div>
+            {% endfor %}
+            {# Formulaire #}
+            <div class="ui styled accordion" style="width:100%;">
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Formulaire à tester
+                </div>
+                <div class="content">
+                    {% include 'doctrine/_doc_form.twig' with {'title':'Formulaire'} %}
+                </div>
+            </div>
+            {# Fin Formumaire #}
+        </div>
+    </div>
+    <div class="ui hidden divider"></div>
+    <div class="ui container">
+        <div class="ui segment">
+            <div class="ui horizontal divider">
+                Traitement des données
+            </div>
+            <table class="ui celled striped table">
+                <thead>
+                    <tr>
+                        <th colspan="8">Liste des personnes</th>
+                    </tr>
+                    <tr>
+                        <th>N°</th>
+                        <th>Civilité</th>
+                        <th>Prénom</th>
+                        <th>Nom</th>
+                        <th>Date de naissance</th>
+                        <th>Crée le</th>
+                        <th>Modifié le</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for demo in formulaire_demos %}
+                <tr>
+                    <td>{{demo.id}}</td>
+                    <td>{{demo.civilite}}</td>
+                    <td>{{demo.prenom}}</td>
+                    <td>{{demo.nom}}</td>
+                    <td>{{demo.dateNaissance|date('d-m-Y')}}</td>
+                    <td>{{demo.createdAt|date('d-m-Y')}}</td>
+                    <td>{{demo.updatedAt|date('d-m-Y')}}</td>
+                    <td>
+                        <div class="ui buttons">
+                            <a class="mini ui blue button" href="{{path('doctrine_edit',{id:demo.id})}}" style="line-height: unset;">Modifier</a>
+                            <div class="or" data-text="ou"></div>
+                            <a class="mini ui red button" href="{{path('doctrine_remove',{id:demo.id})}}"  style="line-height: unset;">Supprimer</a>
+                        </div>
+                    </td>
+                <tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="ui horizontal divider">
+            Conjoint données
+            </div>
+            <table class="ui celled striped table">
+                <thead>
+                    <tr>
+                        <th colspan="8">Liste des personnes</th>
+                    </tr>
+                    <tr>
+                        <th>N°</th>
+                        <th>Civilité</th>
+                        <th>Prénom</th>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Crée le</th>
+                        <th>Modifié le</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for demo in doctrine_demos %}
+                <tr>
+                    <td>{{demo.id}}</td>
+                    <td>{{demo.civilite}}</td>
+                    <td>{{demo.prenom}}</td>
+                    <td>{{demo.nom}}</td>
+                    <td>{{demo.email}}</td>
+                    <td>{{demo.createdAt|date('d-m-Y')}}</td>
+                    <td>{{demo.updatedAt|date('d-m-Y')}}</td>
+                <tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% block javascript %}
+    <script>
+    // Calendrier 
+    $('#french_calendar')
+        .calendar({
+            type: 'date',
+            formatter: {
+                date: function (date, settings) {
+                    if (!date) return '';
+                    var day = date.getDate();
+                    var month = date.getMonth()+1;
+                    var year = date.getFullYear();
+                    day = day.toString();
+                    month = month.toString();
+                    if(day.length == 1)
+                    {
+                        day = '0'+day;
+                    }
+                    if(month.length == 1)
+                    {
+                        month = '0'+month;
+                    }
+                    return day + '/' + month + '/' + year;
+                }
+            },
+            text: {
+            days: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+            months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+            monthsShort: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec'],
+            today: 'Aujourd\'hui',
+            now: 'Maintenant',
+            am: 'AM',
+            pm: 'PM'
+            }
+    });
+    $('.ui.accordion').accordion();
+    $('.ui.toggle.checkbox').checkbox({
+			onChecked: function(){
+				$('#formulaire_demo_couple').val('oui');
+                $('#seg-couple').show('fast');
+			},
+			onUnchecked: function(){
+				$('#formulaire_demo_couple').val('non');
+                $('#seg-couple').hide('fast');
+			}
+		}
+    );
+    $('form>.required.field').each(function(index,element){
+        if($(this).hasClass('error')){
+          $('.ui.styled.accordion>.title').addClass('active');
+          $('.ui.styled.accordion>.content').addClass('active');
+        }
+    })
+    if($('.ui.toggle.checkbox').hasClass('checked')){
+        $('#formulaire_demo_couple').val('oui');
+        $('#seg-couple').show('fast');
+    }
+    </script>
+    {% endblock %}
+{% endblock %}
+

@@ -1,0 +1,46 @@
+
+{# Civilité #}
+{% macro civilite(label, name, value,  items) %}
+    <label>{{label}}</label>
+    <div class="ui selection dropdown">
+        <input type="hidden" name="{{name}}" value="{{value}}">
+        <i class="dropdown icon"></i>
+        <div class="{{not (value) ? 'default' }} text">{{not (value) ? label : value}}</div>
+        <div class="menu">
+            {% for item in items %}
+                <div class="item" data-value="{{item}}">{{item}}</div>
+            {% endfor %}
+        </div>
+    </div>
+{% endmacro %}
+
+{# Personne Nom prénom #}
+{% macro personne(label, name, placeholder, value) %}
+    <label>{{label}}</label>
+    <input type="text" name="{{name}}" placeholder="{{placeholder}}">
+{% endmacro %}
+
+{# Calendrier Naissance #}
+{% macro calendrier(label, name, placeholder, value, id_cal) %}
+    <label>{{label}}</label>
+    <div class="ui calendar" data-element="french_calendar" data-target="cal_{{id_cal}}">
+        <input type="hidden" name="{{name}}" value="{{value}}">
+        <div class="ui input left icon">
+            <i class="calendar icon"></i>
+            <input type="text" placeholder="{{placeholder}}">
+        </div>
+    </div>
+{% endmacro %}
+
+{# Bloc texte #}
+{% macro textearea(label, name, placeholder, value) %}
+    <label>{{label}}</label>
+    <div class="ui left corner labeled input">
+        <div class="ui left corner label">
+            <i class="asterisk icon"></i>
+        </div>
+        <textarea name="{{name}}">{{(value) ? value : placeholder}}</textarea>
+    </div>
+{% endmacro %}
+
+

@@ -1,3 +1,43 @@
 index:
     path: /
     controller: App\Controller\HomeController::index
+vaisseau_form:
+    path: /vaisseau_form
+    controller: App\Controller\HomeController::vaisseau_form
+referencement_index:
+    path: /referencement_index
+    controller: App\Controller\HomeController::referencement_index
+console_bin_index:
+    path: /console_bin_index
+    controller: App\Controller\HomeController::console_bin_index
+extract_map_index:
+    path: /extract_map_index
+    controller: App\Controller\HomeController::extract_map_index
+doctrine_index:
+    path: /doctrine_index
+    controller: App\Controller\DoctrineController::doctrine_index
+doctrine_add:
+    path: /doctrine_add
+    controller: App\Controller\DoctrineController::doctrine_add
+doctrine_edit:
+    path: /doctrine_edit/{id}
+    controller: App\Controller\DoctrineController::doctrine_edit
+doctrine_modify:
+    path: /doctrine_modify/{id}
+    controller: App\Controller\DoctrineController::doctrine_modify
+doctrine_remove:
+    path: /doctrine_remove/{id}
+    controller: App\Controller\DoctrineController::doctrine_remove
+methods:
+    path: /methods
+    controller: App\Controller\MethodsController::methods
+verbatim:
+    path: /verbatim
+    controller: App\Controller\HomeController::verbatim
+include_macros:
+    path: /include_macros
+    controller: App\Controller\IncludemacroController::index
+    methods: [GET|POST]
+symfony:
+    path: /symfony
+    controller: App\Controller\HomeController::symfony

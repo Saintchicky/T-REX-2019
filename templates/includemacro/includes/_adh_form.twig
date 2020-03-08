@@ -1,0 +1,19 @@
+{# On importe sa Macro par from  #}
+
+{% import  '/includemacro/form_elements/_adh_inputs.twig' as forms %}
+
+<div class="ui large header">FORM</div>
+<div class="ui form">
+    <div class="equal width fields">
+        <div class="field">
+            {# {% set value = 'Monsieur' %} #}
+            {% set value = null %}
+            {% set items = ['Madame', 'Monsieur']%}
+            {{ forms.civilite('Civilité', 'dap_civilite', value, items) }}
+        </div>
+        <div class="field">
+            {% set value = null %}
+            {{ forms.personne('Année de naissance', 'dap_annee', 'Année de nassaissance', value) }}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+{# On importe sa Macro par from  #}
+
+{% import  '/includemacro/form_elements/_adh_inputs.twig' as forms %}
+
+<div class="ui large header">OAV FORM</div>
+<div class="ui form">
+    <div class="equal width fields">
+        <div class="field">
+            {# {% set value = 'Monsieur' %} #}
+            {% set value = null %}
+            {% set items = ['Madame', 'Monsieur']%}
+            {{ forms.civilite('Civilité', 'dap_civilite', value, items) }}
+        </div>
+        <div class="field">
+            {% set value = null %}
+            {{ forms.personne('Nom', 'dap_lastname', 'Votre Nom', value) }}
+        </div>
+    </div>
+    <div class="equal width fields">
+        <div class="field">
+            {% set value = null %}
+            {{ forms.personne('Prénom', 'dap_firstname', 'Votre Prénom', value) }}
+        </div>
+        <div class="field">
+            {% set value = null %}
+            {{ forms.calendrier('Date de naissance', 'dap_birth', 'Date', value, 'main') }}
+        </div>
+    </div>
+    <div class="equal width fields">
+        <div class="field">
+            {% set value = null %}
+            {{ forms.calendrier('Date de naissance conjoint', 'dap_conjoint', 'Date', value, 'conjoint') }}
+        </div>
+        <div class="field">
+            {% set value = null %}
+            {{ forms.calendrier('Date de naissance enfant', 'dap_enfant', 'Date', value, 'enfant1') }}
+        </div>
+    </div>
+    <div class="equal width fields">
+        <div class="field">
+            {% set value = null %}
+            {{ forms.textearea('Autres Infos', 'dap_text', 'Il faut remplir', value) }}
+        </div>
+    </div>
+</div>

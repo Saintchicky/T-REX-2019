@@ -52,11 +52,7 @@ class HomeController extends AbstractController
     }
     public function referencement_index()
     {
-        $referencements = $this->getDoctrine()->getRepository(Referencement::class)->findAll();
-        
-        foreach($referencements as $ref){
-           $ville = $ref->getVille();
-        }   
+        $ville = "Montreuil";   
         $choix = &$ville;
 
 

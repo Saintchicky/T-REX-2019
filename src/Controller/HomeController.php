@@ -134,7 +134,7 @@ class HomeController extends AbstractController
             'nb_enfants'=>$nb_enfants,
             'code_array'=>$code_array,
             'code_extract'=>$code_extract,
-            'b'=>$b,
+            'results'=>$b,
             'controller_name' => 'HomeController'
         ]);
     }

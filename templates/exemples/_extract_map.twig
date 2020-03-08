@@ -25,7 +25,22 @@
                 {{ code_array|highlightCode("php")|raw }}
             </p>
             <p>Quelques exemples :</p>
-            {{dump(b)}}
+            <table class="ui celled table">
+                <thead>
+                    <tr>
+                        <th>Clé</th>
+                        <th>Valeur</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for key,res in results %}
+                    <tr>
+                        <td>{{key}}</td>
+                        <td>{{res}}</td> 
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 {% endblock %}

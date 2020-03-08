@@ -142,9 +142,25 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController'
         ]);
     }
-    public function twig()
+    public function verbatim()
     {
-        return $this->render('exemples/_twig.twig', [
+        $code = "
+        {% verbatim %}
+        <ul>
+        {% for item in seq %}
+            <li>{{ item }}</li>
+        {% endfor %}
+        </ul>
+        {% endverbatim %}
+        ";
+        return $this->render('exemples/_verbatim.twig', [
+            'code'=>$code,
+            'controller_name' => 'HomeController',
+        ]);
+    }
+    public function symfony()
+    {
+        return $this->render('home/_symfony.twig', [
             'controller_name' => 'HomeController',
         ]);
     }

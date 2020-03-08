@@ -4,27 +4,28 @@
 
 {% block body %}
     <div class="ui text container">
-        <h1 class="ui header">Extract et array_map</h1>
-        <div class="ui hidden divider"></div>
-        <p>
-           <b>Extract :</b>  Crée des valeurs en corréspondance clés - valeurs
-        </p>
-        <p>Quelques exemples :</p>
-        <p>{{ code_extract|highlightCode("php")|raw }}</p>
-        <div class="ui bulleted list">
-            <div class="item">adh : {{adh}}</div>
-            <div class="item">d_code : {{d_code}}</div>
-            <div class="item">nb_enfants : {{nb_enfants}}</div>
+        <div class="ui segment">
+            <h1 class="ui header">Extract et array_map</h1>
+            <div class="ui hidden divider"></div>
+            <p>
+            <b>Extract :</b>  Crée des valeurs en corréspondance clés - valeurs
+            </p>
+            <p>Quelques exemples :</p>
+            <p>{{ code_extract|highlightCode("php")|raw }}</p>
+            <div class="ui bulleted list">
+                <div class="item">adh : {{adh}}</div>
+                <div class="item">d_code : {{d_code}}</div>
+                <div class="item">nb_enfants : {{nb_enfants}}</div>
+            </div>
+            <div class="ui hidden divider"></div>
+            <p>
+            <b>Array_map :</b>  Permet d'appliquer une fonction aux éléments d'un tableau
+            </p>
+            <p>
+                {{ code_array|highlightCode("php")|raw }}
+            </p>
+            <p>Quelques exemples :</p>
+            {{dump(b)}}
         </div>
-        <div class="ui hidden divider"></div>
-        <p>
-           <b>Array_map :</b>  Permet d'appliquer une fonction aux éléments d'un tableau
-        </p>
-        <p>
-            {{ code_array|highlightCode("php")|raw }}
-        </p>
-        <p>Quelques exemples :</p>
-        {{dump(b)}}
-
     </div>
 {% endblock %}

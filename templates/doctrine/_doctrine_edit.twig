@@ -4,20 +4,25 @@
 
 {% block body %}
     <div class="ui text container">
-        <h1 class="ui header">Doctrine Modifier</h1>
-        {# read and display just one flash message type #}
-        {% for message in app.flashes('notice') %}
-            <div class="ui positive message">
-                <div class="header">
-                   Super !!!
+        <div class="ui segment">
+            <h1 class="ui header">
+                Doctrine Modifier 
+                <a href="{{path('doctrine_add')}}" class="ui primary button">Retour</a>
+            </h1>
+            {# read and display just one flash message type #}
+            {% for message in app.flashes('notice') %}
+                <div class="ui positive message">
+                    <div class="header">
+                    Super !!!
+                    </div>
+                    <p>{{message}}</p>
                 </div>
-                <p>{{message}}</p>
-            </div>
-             <div class="ui hidden divider"></div>
-        {% endfor %}
-        {# Formulaire #}
-            {% include 'doctrine/_doc_form.twig' with {'title':'Editer Formulaire'} %}
-        {# Fin Formumaire #}
+                <div class="ui hidden divider"></div>
+            {% endfor %}
+            {# Formulaire #}
+                {% include 'doctrine/_doc_form.twig' with {'title':'Editer Formulaire'} %}
+            {# Fin Formumaire #}
+        </div>
     </div>
     {% block javascript %}
         <script>

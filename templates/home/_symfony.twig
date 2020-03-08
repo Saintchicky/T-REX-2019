@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Symfony!{% endblock %}
+
+{% block body %}
+    <div class="ui text container">
+        <div class="ui segment">
+            <h1 class="ui header">Présentation de symfony</h1>
+            <div class="ui hidden divider"></div>
+            <div class="ui medium header">Symfony :</div>
+            <p>
+                Symfony est un framework PHP développé par la société française <b>SensioLabs</b>.
+                Symfony lui même est un composant PHP et fonctionne avec d’autres composants PHP comme symfony/yaml, symfony/twig-bundle,
+                Ces composants peuvent même fonctionner sans Symfony.
+                <br>
+                <br>
+                <a href="https://symfony.com/doc/current/components/index.html" class="ui button" target="_blank">
+                    Voir
+                </a>
+            </p>
+            <div class="ui divider"></div>
+            <div class="ui medium header">Initialisation d'un projet Symfony</div>
+            <div class="ui bulleted list">
+                <ul>
+                    <li>
+                        <b> Pour créer un projet web :</b> <br>
+                        composer create-project symfony/<b>website-</b>skeleton <b>blog</b>
+                    </li>
+                    <li>
+                        <b>Pour créer un projet api :</b> <br>
+                        composer create-project symfony/skeleton blog
+                    </li>
+                </ul>
+            </div>
+            <div class="ui divider"></div>
+            <div class="ui horizontal card" style="width:100%!important;">
+                <div class="image" style="width:18em!important;height: 33em!important;">
+                    <img src="{{asset('img/symfo.png')}}">
+                </div>
+                <div class="content">
+                    <div class="header" style="text-align:center;">Architecture de Symfony</div>
+                    <div class="description">
+                        <div class="ui bulleted list">
+                            <ul>
+                                <li>
+                                    <b>bin :</b> c’est ici que se trouve les exécutables de Symfony, comme le fichier console. 
+                                    Les fichiers dans ce dossier seront donc exécutables en ligne de commande.
+                                </li>
+                                <li>
+                                    <b>config :</b> comme son nom l’indique, ce dossier va contenir la configuration de notre application Symfony. 
+                                    C’est ici que nous allons configurer les routes, les services
+                                </li>
+                                <li>
+                                    <b>public :</b> Ceci est le dossier d’entré de notre application, mais aussi le dossier public, 
+                                    nous allons y mettre tout les fichiers accessibles au public. 
+                                    Il contient notamment le contrôleur frontal de Symfony.
+                                </li>
+                                <li>
+                                    <b>src :</b> C’est ici que la magie s’opère, c’est ici que vous écrirez vos fichiers PHP. 
+                                    Les contrôleurs, entités, migrations, … sont dans ce dossier. 
+                                </li>
+                                <li>
+                                    <b>templates :</b> Les vues de notre application sont ici, 
+                                    toutes les pages qui vont être affichées à l'écran vont être ici. 
+                                </li>
+                                <li>
+                                    <b>tests :</b> C’est ici que vous allez mettre les différents tests pour tester vos fonctionnalités. 
+                                </li>
+                                <li>
+                                    <b>var :</b> Dans ce dossier Symfony va mettre les caches et logs. 
+                                </li>
+                                <li>
+                                    <b>vendor :</b> Ce dossier contient toutes les dépendances créées avec composer.  
+                                </li>
+                                <li>
+                                    <b>.env :</b> Ce fichier définit les variables d’environnement de notre application, 
+                                    il définit l’environnement dans lequel nous sommes, 
+                                    développement ou production, les informations de connexion à la BDD  
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+{% endblock %}

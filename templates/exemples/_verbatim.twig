@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Twig!{% endblock %}
+{% block title %}Verbatim!{% endblock %}
 
 {% block body %}
     <div class="ui text container">
-        <h1 class="ui header">Astuces Twig</h1>
-        <div class="ui hidden divider"></div>
-        <p>
-           Quelques exemples d'utilisations Twig
-        </p>
-        <p>Verbatim : twig ne parse plus les variables</p>
-         <div class="ui bulleted list">
-            <div class="item">
+        <div class="ui segment">
+            <h1 class="ui header">Verbatim</h1>
+            <div class="ui hidden divider"></div>
+            <p>Twig ne parse plus les variables</p>
+            <p>
+                {{ code|highlightCode("php")|raw }}
+            </p>
+            <div class="ui bulleted list">
                 {% verbatim %}
                     <ul>
                     {% for item in seq %}

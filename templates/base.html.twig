@@ -69,11 +69,6 @@
         <script src="{{ asset('semantic/dist/semantic.min.js')}}"></script>
     </head>
     <body>
-        {# Intitulé de l'appli #}
-        <div class="ui main text container">
-            <h1 class="ui header">Retour Formation</h1>
-            <p>Formation d'une semaine sur PHP et Symfony</p>
-        </div>
         {# Fin intitulé de l'appli #}
         {# Menu de l'appli #}
         <div class="ui borderless main menu fixed" style="position: fixed; top: 0px; left: auto; z-index: 10;">
@@ -81,40 +76,23 @@
             <div class="header item">
                 <div class="logo">T-Rex</div>
             </div>
-            <a href="#" class="item">Symfony</a>
             <div class="ui dropdown item">
-                    Léo <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <div class="header">Php</div>
-                        <a href="{{path('vaisseau_form')}}" class="item">Vaisseau</a>
-                        <a href="{{path('referencement_index')}}" class="item">Référencement</a>
-                        <a href="{{path('extract_map_index')}}" class="item">Extract et Array_Map</a>
-                        <div class="divider"></div>
-                        <div class="header">Symfony</div>
-                        <a href="{{path('doctrine_index')}}" class="item">Doctrine Démo</a>
-                        <a href="{{path('twig')}}" class="item">Twig</a>
-                        <a href="{{path('include_macros')}}" class="item">Includes et Macro</a>
-                            {# <a class="item">Link Item</a> #}
-                    </div>
+                Démo <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div class="header">Php</div>
+                    <a href="{{path('vaisseau_form')}}" class="item">Vaisseau</a>
+                    <a href="{{path('referencement_index')}}" class="item">Référencement</a>
+                    <a href="{{path('extract_map_index')}}" class="item">Extract et Array_Map</a>
+                    <div class="divider"></div>
+                    <div class="header">Symfony</div>
+                    <a href="{{path('symfony')}}" class="item">Présentation Symfony</a>
+                    <a href="{{path('console_bin_index')}}" class="item">Console / bin</a>
+                    <a href="{{path('doctrine_index')}}" class="item">Doctrine Démo</a>
+                    <div class="header">Twig</div>
+                    <a href="{{path('verbatim')}}" class="item">Verbatim</a>
+                    <a href="{{path('include_macros')}}" class="item">Includes et Macro</a>
+                </div>
             </div>
-            <a href="#" class="ui right floated dropdown item" tabindex="0">
-                Sam <i class="dropdown icon"></i>
-                <div class="menu" tabindex="-1">
-                <div class="item">Link Item</div>
-                <div class="item">Link Item</div>
-                <div class="divider"></div>
-                <div class="header">Header Item</div>
-                <div class="item">
-                    <i class="dropdown icon"></i>
-                    Sub Menu
-                    <div class="menu">
-                    <div class="item">Link Item</div>
-                    <div class="item">Link Item</div>
-                    </div>
-                </div>
-                <div class="item">Link Item</div>
-                </div>
-            </a>
             </div>
         </div>
         <div class="ui borderless main menu constraint" style="display: block; visibility: hidden;">
@@ -132,45 +110,30 @@
             <div class="ui center aligned container">
                 <div class="ui stackable inverted divided grid">
                 <div class="three wide column">
-                    <h4 class="ui inverted header">Group 1</h4>
+                    <h4 class="ui inverted header">Php</h4>
                     <div class="ui inverted link list">
-                    <a href="#" class="item">Link One</a>
-                    <a href="#" class="item">Link Two</a>
-                    <a href="#" class="item">Link Three</a>
-                    <a href="#" class="item">Link Four</a>
+                        <a href="{{path('vaisseau_form')}}" class="item">Vaisseau</a>
+                        <a href="{{path('referencement_index')}}" class="item">Référencement</a>
+                        <a href="{{path('extract_map_index')}}" class="item">Extract et Array_Map</a>
                     </div>
-                </div>
-                <div class="three wide column">
-                    <h4 class="ui inverted header">Group 2</h4>
+                    <h4 class="ui inverted header">Symfony</h4>
                     <div class="ui inverted link list">
-                    <a href="#" class="item">Link One</a>
-                    <a href="#" class="item">Link Two</a>
-                    <a href="#" class="item">Link Three</a>
-                    <a href="#" class="item">Link Four</a>
+                        <a href="{{path('symfony')}}" class="item">Présentation Symfony</a>
+                        <a href="{{path('console_bin_index')}}" class="item">Console / bin</a>
+                        <a href="{{path('doctrine_index')}}" class="item">Doctrine Démo</a>
                     </div>
-                </div>
-                <div class="three wide column">
-                    <h4 class="ui inverted header">Group 3</h4>
+                    <h4 class="ui inverted header">Twig</h4>
                     <div class="ui inverted link list">
-                    <a href="#" class="item">Link One</a>
-                    <a href="#" class="item">Link Two</a>
-                    <a href="#" class="item">Link Three</a>
-                    <a href="#" class="item">Link Four</a>
+                        <a href="{{path('verbatim')}}" class="item">Verbatim</a>
+                        <a href="{{path('include_macros')}}" class="item">Includes et Macro</a>
                     </div>
                 </div>
                 <div class="seven wide column">
-                    <h4 class="ui inverted header">Footer Header</h4>
-                    <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+                    <h4 class="ui inverted header">Démo SYMFONY</h4>
+                    <p>Ceci n'est qu'une démo</p>
                 </div>
                 </div>
                 <div class="ui inverted section divider"></div>
-                <img src="assets/images/logo.png" class="ui centered mini image">
-                <div class="ui horizontal inverted small divided link list">
-                <a class="item" href="#">Site Map</a>
-                <a class="item" href="#">Contact Us</a>
-                <a class="item" href="#">Terms and Conditions</a>
-                <a class="item" href="#">Privacy Policy</a>
-                </div>
             </div>
         </div>
         {% block javascripts %}

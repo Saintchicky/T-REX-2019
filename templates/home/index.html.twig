@@ -1,13 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil!{% endblock %}
 
 {% block body %}
     <div class="ui text container">
-        <h1 class="ui header">Présentation de symfony avec des astuces PHP</h1>
-        <div class="ui hidden divider"></div>
-        <p>
-           Le console bin est une ligne de commande qui référence l'ensemble des lignes de commandes de Symfony
-        </p>
+        <div class="ui segment">
+            <h1 class="ui header">Présentation de symfony avec des astuces PHP</h1>
+            <div class="ui hidden divider"></div>
+            <div class="ui bulleted list">
+                <ul>
+                    <li><b>Première Partie :</b> Quelques Astuces PHP</li>
+                    <li><b>Deuxième Partie :</b> Démo Doctrine et astuves Twig</li>
+                </ul>
+            </div>
+        </div> 
     </div>
 {% endblock %}

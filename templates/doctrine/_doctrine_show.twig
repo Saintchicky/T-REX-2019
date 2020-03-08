@@ -4,106 +4,111 @@
 
 {% block body %}
     <div class="ui text container">
-        <h1 class="ui header">Doctrine CRUD</h1>
-        <div class="ui hidden divider"></div>
-        <p>
-           On peut tester l'objet form et doctrine avec ce formulaire
-        </p>
-        {# read and display just one flash message type #}
-        {% for message in app.flashes('notice') %}
-            <div class="ui positive message">
-                <div class="header">
-                   Super !!!
-                </div>
-                <p>{{message}}</p>
-            </div>
+        <div class="ui segment">
+            <h1 class="ui header">Doctrine CRUD</h1>
             <div class="ui hidden divider"></div>
-        {% endfor %}
-        {# Formulaire #}
-        <div class="ui styled accordion" style="width:100%;">
-            <div class="title">
-                <i class="dropdown icon"></i>
-                Formulaire à tester
-            </div>
-            <div class="content">
-                {% include 'doctrine/_doc_form.twig' with {'title':'Formulaire'} %}
-            </div>
-        </div>
-        {# Fin Formumaire #}
-    </div>
-    <div class="ui container">
-        <div class="ui horizontal divider">
-            Traitement des données
-        </div>
-        <table class="ui celled striped table">
-            <thead>
-                <tr>
-                    <th colspan="8">Liste des personnes</th>
-                </tr>
-                <tr>
-                    <th>N°</th>
-                    <th>Civilité</th>
-                    <th>Prénom</th>
-                    <th>Nom</th>
-                    <th>Date de naissance</th>
-                    <th>Crée le</th>
-                    <th>Modifié le</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for demo in formulaire_demos %}
-            <tr>
-                <td>{{demo.id}}</td>
-                <td>{{demo.civilite}}</td>
-                <td>{{demo.prenom}}</td>
-                <td>{{demo.nom}}</td>
-                <td>{{demo.dateNaissance|date('d-m-Y')}}</td>
-                <td>{{demo.createdAt|date('d-m-Y')}}</td>
-                <td>{{demo.updatedAt|date('d-m-Y')}}</td>
-                <td>
-                    <div class="ui buttons">
-                        <a class="mini ui blue button" href="{{path('doctrine_edit',{id:demo.id})}}" style="line-height: unset;">Modifier</a>
-                        <div class="or" data-text="ou"></div>
-                        <a class="mini ui red button" href="{{path('doctrine_remove',{id:demo.id})}}"  style="line-height: unset;">Supprimer</a>
+            <p>
+            On peut tester l'objet form et doctrine avec ce formulaire
+            </p>
+            {# read and display just one flash message type #}
+            {% for message in app.flashes('notice') %}
+                <div class="ui positive message">
+                    <div class="header">
+                    Super !!!
                     </div>
-                </td>
-            <tr>
+                    <p>{{message}}</p>
+                </div>
+                <div class="ui hidden divider"></div>
             {% endfor %}
-            </tbody>
-        </table>
-        <div class="ui horizontal divider">
-           Couple données
+            {# Formulaire #}
+            <div class="ui styled accordion" style="width:100%;">
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Formulaire à tester
+                </div>
+                <div class="content">
+                    {% include 'doctrine/_doc_form.twig' with {'title':'Formulaire'} %}
+                </div>
+            </div>
+            {# Fin Formumaire #}
         </div>
-        <table class="ui celled striped table">
-            <thead>
+    </div>
+    <div class="ui hidden divider"></div>
+    <div class="ui container">
+        <div class="ui segment">
+            <div class="ui horizontal divider">
+                Traitement des données
+            </div>
+            <table class="ui celled striped table">
+                <thead>
+                    <tr>
+                        <th colspan="8">Liste des personnes</th>
+                    </tr>
+                    <tr>
+                        <th>N°</th>
+                        <th>Civilité</th>
+                        <th>Prénom</th>
+                        <th>Nom</th>
+                        <th>Date de naissance</th>
+                        <th>Crée le</th>
+                        <th>Modifié le</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for demo in formulaire_demos %}
                 <tr>
-                    <th colspan="8">Liste des personnes</th>
-                </tr>
+                    <td>{{demo.id}}</td>
+                    <td>{{demo.civilite}}</td>
+                    <td>{{demo.prenom}}</td>
+                    <td>{{demo.nom}}</td>
+                    <td>{{demo.dateNaissance|date('d-m-Y')}}</td>
+                    <td>{{demo.createdAt|date('d-m-Y')}}</td>
+                    <td>{{demo.updatedAt|date('d-m-Y')}}</td>
+                    <td>
+                        <div class="ui buttons">
+                            <a class="mini ui blue button" href="{{path('doctrine_edit',{id:demo.id})}}" style="line-height: unset;">Modifier</a>
+                            <div class="or" data-text="ou"></div>
+                            <a class="mini ui red button" href="{{path('doctrine_remove',{id:demo.id})}}"  style="line-height: unset;">Supprimer</a>
+                        </div>
+                    </td>
                 <tr>
-                    <th>N°</th>
-                    <th>Civilité</th>
-                    <th>Prénom</th>
-                    <th>Nom</th>
-                    <th>Email</th>
-                    <th>Crée le</th>
-                    <th>Modifié le</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for demo in doctrine_demos %}
-            <tr>
-                <td>{{demo.id}}</td>
-                <td>{{demo.civilite}}</td>
-                <td>{{demo.prenom}}</td>
-                <td>{{demo.nom}}</td>
-                <td>{{demo.email}}</td>
-                <td>{{demo.createdAt|date('d-m-Y')}}</td>
-                <td>{{demo.updatedAt|date('d-m-Y')}}</td>
-            <tr>
                 {% endfor %}
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+            <div class="ui horizontal divider">
+            Conjoint données
+            </div>
+            <table class="ui celled striped table">
+                <thead>
+                    <tr>
+                        <th colspan="8">Liste des personnes</th>
+                    </tr>
+                    <tr>
+                        <th>N°</th>
+                        <th>Civilité</th>
+                        <th>Prénom</th>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Crée le</th>
+                        <th>Modifié le</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for demo in doctrine_demos %}
+                <tr>
+                    <td>{{demo.id}}</td>
+                    <td>{{demo.civilite}}</td>
+                    <td>{{demo.prenom}}</td>
+                    <td>{{demo.nom}}</td>
+                    <td>{{demo.email}}</td>
+                    <td>{{demo.createdAt|date('d-m-Y')}}</td>
+                    <td>{{demo.updatedAt|date('d-m-Y')}}</td>
+                <tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
     {% block javascript %}
     <script>

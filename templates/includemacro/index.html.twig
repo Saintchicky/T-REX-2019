@@ -4,34 +4,81 @@
 
 {% block body %}
     <div class="ui text container">
-        <h1 class="ui header">Démo d'include et Macros</h1>
-        <div class="ui hidden divider"></div>
-        <div class="ui medium header">Include avec Variables personnalisées</div>
-         <p>
-            {{ code_include_var|highlightCode("php")|raw }}
-        </p>
-        {# Changer la variable shipping #}
-        {% include  "/includemacro/includes/_step.twig" with {step: 'shipping'} only %}
+        <div class="ui segment">
+            <h1 class="ui header">Démo d'include et Macros</h1>
+            <div class="ui hidden divider"></div>
+            <div class="ui medium header">Include avec Variables personnalisées</div>
+            <p>
+                {{ code_include_var|highlightCode("php")|raw }}
+            </p>
+            <div class="ui hidden divider"></div>
+            <form action="{{path('include_macros')}}" method="POST">
+                <div class="ui form">
+                    <div class="inline fields">
+                        <label>Changer l'étape</label>
+                        <div class="field">
+                            <div class="ui selection dropdown" id="step">
+                                <input type="hidden" name="step">
+                                <i class="dropdown icon"></i>
+                                <div class="default text">Etape</div>
+                                {% set step_val = ['shipping','billing','confirm']%}
+                                <div class="menu">
+                                    {% for step in step_val %}
+                                        <div class="item" data-value="{{step}}">{{step}}</div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <input type="submit" value="Valider" class="ui button primary">
+                        </div>
+                    </div>
+                </div>
+            </form>
+            {# Changer la variable shipping #}
+            {% include  "/includemacro/includes/_step.twig" with {step: step} only %}
 
-        <div class="ui divider"></div>
-        <div class="ui medium header">Include avec condition</div>
-        <p>
-            {{ code_include_cond|highlightCode("php")|raw }}
-        </p>
+            <div class="ui divider"></div>
+            <div class="ui medium header">Include avec condition</div>
+            <p>
+                {{ code_include_cond|highlightCode("php")|raw }}
+            </p>
 
-        {% set oav = true %}
-        {# {% set oav = false %} #}
-
-        <form action="#" name="test" id="test">
-            {% include oav  ? '/includemacro/includes/_adh_form_oav.twig' : '/includemacro/includes/_adh_form.twig' %}
-            <div class="field">
-                <input type="submit" value="Valider" class="ui button primary">
-            </div>
-        </form>
+            <form action="{{path('include_macros')}}" method="POST">
+                <div class="ui form">
+                    <div class="inline fields">
+                        <label>Changer le type de form</label>
+                        <div class="field">
+                            <div class="ui selection dropdown" id="oav">
+                                <input type="hidden" name="oav">
+                                <i class="dropdown icon"></i>
+                                <div class="default text">Etape</div>
+                                {% set oav_val = {false:'Pas OAV', true:'OAV'} %}
+                                <div class="menu">
+                                    {% for key,oav in oav_val %}
+                                        <div class="item" data-value="{{key}}">{{oav}}</div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <input type="submit" value="Valider" class="ui button primary">
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <form>
+                {% include oav  ? '/includemacro/includes/_adh_form_oav.twig' : '/includemacro/includes/_adh_form.twig' %}
+                <div class="field">
+                    <input type="submit" value="Valider" class="ui button primary">
+                </div>
+            </form>
+        </div>
     </div>
     {% block javascript %}
         <script>
-            $('.ui.selection.dropdown').dropdown({});
+            $('.ui.selection.dropdown').dropdown();
+            $('#step').dropdown();
             // Récupère le data-target de l'élément cliqué
             function handler(event)
             {

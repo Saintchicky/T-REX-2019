@@ -31,9 +31,13 @@ doctrine_remove:
 methods:
     path: /methods
     controller: App\Controller\MethodsController::methods
-twig:
-    path: /twig
-    controller: App\Controller\HomeController::twig
+verbatim:
+    path: /verbatim
+    controller: App\Controller\HomeController::verbatim
 include_macros:
     path: /include_macros
     controller: App\Controller\IncludemacroController::index
+    methods: [GET|POST]
+symfony:
+    path: /symfony
+    controller: App\Controller\HomeController::symfony

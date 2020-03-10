@@ -1,7 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Include et Macros{% endblock %}
-
+{% block stylesheets %}
+    <style>
+    .ui.calendar{
+        inset: unset;
+    }
+    .ui.popup{
+        display:block;
+    }
+    </style>
+{% endblock %}
 {% block body %}
     <div class="ui text container">
         <div class="ui segment">
@@ -35,6 +44,7 @@
                     </div>
                 </div>
             </form>
+
             {# Changer la variable shipping #}
             {% include  "/includemacro/includes/_step.twig" with {step: step} only %}
 
@@ -68,6 +78,7 @@
                 </div>
             </form>
             <form>
+            {# Change de type de form #}
                 {% include oav  ? '/includemacro/includes/_adh_form_oav.twig' : '/includemacro/includes/_adh_form.twig' %}
                 <div class="field">
                     <input type="submit" value="Valider" class="ui button primary">
@@ -79,44 +90,6 @@
         <script>
             $('.ui.selection.dropdown').dropdown();
             $('#step').dropdown();
-            // Récupère le data-target de l'élément cliqué
-            function handler(event)
-            {
-               var element = $(this).data('target');
-               var target = $('[data-target='+element+']');
-               return target;
-            }
-            $('[data-element="french_calendar"]').click( handler ).calendar({
-                type: 'date',
-                formatter: {
-                    date: function (date, settings) {
-                        if (!date) return '';
-                        var day = date.getDate();
-                        var month = date.getMonth()+1;
-                        var year = date.getFullYear();
-                        day = day.toString();
-                        month = month.toString();
-                        if(day.length == 1)
-                        {
-                            day = '0'+day;
-                        }
-                        if(month.length == 1)
-                        {
-                            month = '0'+month;
-                        }
-                        return day + '/' + month + '/' + year;
-                    }
-                },
-                text: {
-                days: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-                months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
-                monthsShort: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec'],
-                today: 'Aujourd\'hui',
-                now: 'Maintenant',
-                am: 'AM',
-                pm: 'PM'
-                }
-            });;
         </script>
     {% endblock %}
 {% endblock %}

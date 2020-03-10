@@ -6,40 +6,31 @@
 <div class="ui form">
     <div class="equal width fields">
         <div class="field">
+            {# Décommenter pour exemple #}
             {# {% set value = 'Monsieur' %} #}
             {% set value = null %}
             {% set items = ['Madame', 'Monsieur']%}
-            {{ forms.civilite('Civilité', 'dap_civilite', value, items) }}
+            {{ forms.civilite('Civilité', 'civilite', value, items) }}
         </div>
         <div class="field">
             {% set value = null %}
-            {{ forms.personne('Nom', 'dap_lastname', 'Votre Nom', value) }}
-        </div>
-    </div>
-    <div class="equal width fields">
-        <div class="field">
-            {% set value = null %}
-            {{ forms.personne('Prénom', 'dap_firstname', 'Votre Prénom', value) }}
-        </div>
-        <div class="field">
-            {% set value = null %}
-            {{ forms.calendrier('Date de naissance', 'dap_birth', 'Date', value, 'main') }}
+            {{ forms.personne('Nom', 'lastname', 'Votre Nom', value) }}
         </div>
     </div>
     <div class="equal width fields">
         <div class="field">
             {% set value = null %}
-            {{ forms.calendrier('Date de naissance conjoint', 'dap_conjoint', 'Date', value, 'conjoint') }}
+            {{ forms.personne('Prénom', 'firstname', 'Votre Prénom', value) }}
         </div>
         <div class="field">
             {% set value = null %}
-            {{ forms.calendrier('Date de naissance enfant', 'dap_enfant', 'Date', value, 'enfant1') }}
+            {{ forms.pays('Pays', 'pays', 'Choisir un pays') }}
         </div>
     </div>
     <div class="equal width fields">
         <div class="field">
             {% set value = null %}
-            {{ forms.textearea('Autres Infos', 'dap_text', 'Il faut remplir', value) }}
+            {{ forms.textearea('Autres Infos', 'text', 'Il faut remplir', value) }}
         </div>
     </div>
 </div>

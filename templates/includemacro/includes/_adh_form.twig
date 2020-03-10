@@ -6,14 +6,13 @@
 <div class="ui form">
     <div class="equal width fields">
         <div class="field">
-            {# {% set value = 'Monsieur' %} #}
             {% set value = null %}
             {% set items = ['Madame', 'Monsieur']%}
-            {{ forms.civilite('Civilité', 'dap_civilite', value, items) }}
+            {{ forms.civilite('Civilité', 'civilite', value, items) }}
         </div>
         <div class="field">
             {% set value = null %}
-            {{ forms.personne('Année de naissance', 'dap_annee', 'Année de nassaissance', value) }}
+            {{ forms.personne('Année de naissance', 'annee', 'Année de nassaissance', value) }}
         </div>
     </div>
 </div>

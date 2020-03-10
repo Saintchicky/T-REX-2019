@@ -20,18 +20,6 @@
     <input type="text" name="{{name}}" placeholder="{{placeholder}}">
 {% endmacro %}
 
-{# Calendrier Naissance #}
-{% macro calendrier(label, name, placeholder, value, id_cal) %}
-    <label>{{label}}</label>
-    <div class="ui calendar" data-element="french_calendar" data-target="cal_{{id_cal}}">
-        <input type="hidden" name="{{name}}" value="{{value}}">
-        <div class="ui input left icon">
-            <i class="calendar icon"></i>
-            <input type="text" placeholder="{{placeholder}}">
-        </div>
-    </div>
-{% endmacro %}
-
 {# Bloc texte #}
 {% macro textearea(label, name, placeholder, value) %}
     <label>{{label}}</label>
@@ -43,4 +31,18 @@
     </div>
 {% endmacro %}
 
-
+{# Sélection Pays #}
+{% macro pays(label, name, placeholder) %}
+    <label>{{label}}</label>
+    <div class="ui fluid search selection dropdown">
+    <input type="hidden" name="country">
+    <i class="dropdown icon"></i>
+    <div class="default text">{{placeholder}}</div>
+        <div class="menu">
+            <div class="item" data-value="mc"><i class="mc flag"></i>Monaco</div>
+            <div class="item" data-value="mn"><i class="mn flag"></i>Mongolia</div>
+            <div class="item" data-value="me"><i class="me flag"></i>Montenegro</div>
+            <div class="item" data-value="ms"><i class="ms flag"></i>Montserrat</div>
+        </div>
+    </div>
+{% endmacro %}
